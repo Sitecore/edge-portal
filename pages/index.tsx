@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import React from 'react';
 import { LatestNewsAndArticles } from '../components/latestNewsAndArticles';
 import { CallToActionCards } from '../components/callToActionCards';
-import { ThreeVideoGrid } from '../components/threeVideoGrid';
+import { HorizontalVideoGrid } from '../components/horizontalVideoGrid';
 import { YouTubeVideo } from '../interfaces/youTubeVideo';
 import { GetStaticProps } from 'next';
 
@@ -51,7 +51,7 @@ export default function Home(props: any) {
 
         <LatestNewsAndArticles />
 
-        <ThreeVideoGrid videos={youTubeData} />
+        <HorizontalVideoGrid videos={youTubeData} />
       </Container>
     </div>
 

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export function ThreeVideoGrid(videos: any) {
+export function HorizontalVideoGrid(videos: any) {
   // TODO: Should be able to type ThreeVideoGrid property instead of taking any then typing object inside of method
   const youTubeData: YouTubeVideo[] = videos.videos;
 
