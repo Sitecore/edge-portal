@@ -6,8 +6,32 @@ import React from 'react';
 import { LatestNewsAndArticles } from '../components/latestNewsAndArticles';
 import { CallToActionCards } from '../components/callToActionCards';
 import { ThreeVideoGrid } from '../components/threeVideoGrid';
+import { YouTubeVideo } from '../interfaces/youTubeVideo';
+import { GetStaticProps } from 'next';
 
-export default function Home() {
+const YOUTUBE_API_KEY = process.env.THOMAS_YOUTUBE_API_KEY;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=PL1jJVFm_lGnwKmalgi6sukqDhoYA73JDn&key=${YOUTUBE_API_KEY}`)
+  const data = await res.json()
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  let youTubeData: YouTubeVideo[] = data.items;
+
+  return {
+    props: {
+      youTubeData
+    }, 
+  }
+}
+
+export default function Home(props: any) {
+  const youTubeData: YouTubeVideo[] = props.youTubeData
   return (
     <div>
       <Head>
@@ -27,7 +51,7 @@ export default function Home() {
 
         <LatestNewsAndArticles />
 
-        <ThreeVideoGrid />
+        <ThreeVideoGrid videos={youTubeData} />
       </Container>
     </div>
 
