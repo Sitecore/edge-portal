@@ -1,0 +1,32 @@
+name: deploy website
+on: 
+  push:
+    branches: [ main, develop ]
+  pull_request_target:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # - uses: amondnet/vercel-action@v20
+      #   id: vercel-staging-deployment
+      #   if: github.ref == 'refs/heads/develop'
+      #   with:
+      #     vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+      #     vercel-args: '--confirm' #Optional
+      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  #Required
+      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required 
+      #     alias-domains: |
+      #       ${{secrets.STAGING_DOMAIN}}
+
+      - uses: amondnet/vercel-action@v20
+        id: vercel-production-deployment
+        if: github.ref == 'refs/heads/main'
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+          vercel-args: '--prod --confirm' #Optional
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  #Required
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required 
+          # alias-domains: |
+          #   ${{secrets.PROD_DOMAIN}}
