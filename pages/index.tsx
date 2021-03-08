@@ -6,19 +6,37 @@ import React from 'react';
 import { LatestNewsAndArticles } from '../components/latestNewsAndArticles';
 import { CallToActionCards } from '../components/callToActionCards';
 import { ThreeVideoGrid } from '../components/threeVideoGrid';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+  title: {
+    textAlign: 'center',
+    color: "white"
+  },
+  box: {
+    backgroundColor: '#424242',
+    padding: "5rem",
+    borderRadius: "1rem"
+  }
+}));
+
+
 
 export default function Home() {
+
+  const classes = useStyles();
+
+
   return (
     <div>
       <Head>
       </Head>
       <Container maxWidth="md">
-
-        <Box my={4}>
-          <Typography variant="h4" component="h1" gutterBottom>
+        <Box my={4} className={classes.box}>
+          <Typography className={classes.title} variant="h4" component="h1" gutterBottom>
             Sitecore Community
         </Typography>
-          <Typography variant="h5" component="h1" gutterBottom>
+          <Typography className={classes.title}  variant="h5" component="h1" gutterBottom>
             Get up and running quickly
         </Typography>
         </Box>
