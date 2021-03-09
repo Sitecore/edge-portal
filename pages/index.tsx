@@ -31,7 +31,7 @@ export default function Home() {
     <div>
       <Head>
       </Head>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Box my={4} className={classes.box}>
           <Typography className={classes.title} variant="h4" component="h1" gutterBottom>
             Sitecore Community
