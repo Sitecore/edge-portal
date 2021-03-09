@@ -7,6 +7,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link'
 
 export const useStyles = makeStyles(() => ({
   paper: {
@@ -22,15 +23,27 @@ export const useStyles = makeStyles(() => ({
   },
   blue: {
     backgroundColor: "#039be5",
+    '&:hover': {
+      backgroundColor: "#03a9f4"
+    }
   },
   green: {
     backgroundColor: "#009688",
+    '&:hover': {
+      backgroundColor: "#26a69a"
+    }
   },
   orange: {
     backgroundColor: "#ff5722",
+    '&:hover': {
+      backgroundColor: "#ff7043"
+    }
   },
   purple: {
     backgroundColor: "#673ab7",
+    '&:hover': {
+      backgroundColor: "#7e57c2"
+    }
   },
   padding: {
     paddingBottom: "3px",
@@ -40,6 +53,9 @@ export const useStyles = makeStyles(() => ({
     fontWeight: "bold",
     paddingTop: "10px",
     paddingBottom: "1rem"
+  },
+  link: {
+    textDecoration: "none"
   }
 }));
 
@@ -51,54 +67,70 @@ export function CallToActionCards() {
       <Grid container justify="center" spacing={5}>
         <Grid item>
           <Box m={1}>
-            <Paper className={`${classes.paper} ${classes.blue}`}>
-              <div className={classes.promoText}>
-                <div>
-                  <DescriptionIcon fontSize="large" />
-                </div>
-                <Typography className={classes.promoCardTitle}>Documentation</Typography>
-                <Typography variant="caption" >Learn more about Sitecore Experience Edge</Typography>
-              </div>
-            </Paper>
+            <Link href="#">
+              <a className={classes.link} >
+                <Paper className={`${classes.paper} ${classes.blue}`}>
+                  <div className={classes.promoText}>
+                    <div>
+                      <DescriptionIcon fontSize="large" />
+                    </div>
+                    <Typography className={classes.promoCardTitle}>Documentation</Typography>
+                    <Typography variant="caption" >Learn more about Sitecore Experience Edge</Typography>
+                  </div>
+                </Paper>
+              </a>
+            </Link>
           </Box>
         </Grid>
         <Grid item>
           <Box m={1}>
-            <Paper className={`${classes.paper} ${classes.green}`}>
-              <div className={classes.promoText}>
-                <div>
-                  <GitHubIcon fontSize="large" />
-                </div>
-                <Typography className={classes.promoCardTitle}>Quick Start</Typography>
-                <Typography variant="caption" >Let us help you get your first app up and running</Typography>
-              </div>
-            </Paper>
+            <Link href="#">
+              <a className={classes.link} >
+                <Paper className={`${classes.paper} ${classes.green}`}>
+                  <div className={classes.promoText}>
+                    <div>
+                      <GitHubIcon fontSize="large" />
+                    </div>
+                    <Typography className={classes.promoCardTitle}>Quick Start</Typography>
+                    <Typography variant="caption" >Let us help you get your first app up and running</Typography>
+                  </div>
+                </Paper>
+              </a>
+            </Link>
           </Box>
         </Grid>
         <Grid item>
           <Box m={1}>
-            <Paper className={`${classes.paper} ${classes.orange}`}>
-              <div className={classes.promoText}>
-                <div>
-                  <GitHubIcon fontSize="large" />
-                </div>
-                <Typography className={classes.promoCardTitle}>Starter Kits</Typography>
-                <Typography variant="caption" >Use our examples and  try it out yourself</Typography>
-              </div>
-            </Paper>
+            <Link href="#">
+              <a className={classes.link} >
+                <Paper className={`${classes.paper} ${classes.orange}`}>
+                  <div className={classes.promoText}>
+                    <div>
+                      <GitHubIcon fontSize="large" />
+                    </div>
+                    <Typography className={classes.promoCardTitle}>Starter Kits</Typography>
+                    <Typography variant="caption" >Use our examples and  try it out yourself</Typography>
+                  </div>
+                </Paper>
+              </a>
+            </Link>
           </Box>
         </Grid>
         <Grid item>
           <Box m={1}>
-            <Paper className={`${classes.paper} ${classes.purple}`}>
-              <div className={classes.promoText}>
-                <div>
-                  <CreateNewFolderIcon fontSize="large" />
-                </div>
-                <Typography className={classes.promoCardTitle}>What's New</Typography>
-                <Typography variant="caption" >Read about latest updates in our change log</Typography>
-              </div>
-            </Paper>
+            <Link href="https://mvp.sitecore.com/devportal/edge-doc.html">
+              <a className={classes.link} >
+                <Paper className={`${classes.paper} ${classes.purple}`}>
+                  <div className={classes.promoText}>
+                    <div>
+                      <CreateNewFolderIcon fontSize="large" />
+                    </div>
+                    <Typography className={classes.promoCardTitle}>What's New</Typography>
+                    <Typography variant="caption" >Read about latest updates in our change log</Typography>
+                  </div>
+                </Paper>
+              </a>
+            </Link>
           </Box>
         </Grid>
       </Grid>
