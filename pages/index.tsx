@@ -11,7 +11,7 @@ import Image from 'next/image'
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     color: "white"
@@ -39,11 +39,21 @@ const useStyles = makeStyles(() => ({
   gridItem: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    flexDirection: "column",
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: "row"
+    },
+  },
+  navLogo: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.up('sm')]: {
+    },
   },
   link: {
     textDecoration: "none",
-
   }
 }));
 
@@ -60,10 +70,10 @@ export default function Home() {
       </Head>
       <Container maxWidth="lg">
         <Grid container justify="center" spacing={1} className={classes.appBar}>
-          <Grid item xs={2}>
-            <Image src="/images/sitecore_logo.svg" width={200} height={150} />
+          <Grid item md={2} xs={12} className={classes.navLogo}>
+            <Image src="/images/sitecore_logo.svg" width={200} height={100} />
           </Grid>
-          <Grid item xs={8} className={classes.gridItem}>
+          <Grid item sm={10} xs={12} className={classes.gridItem}>
             <Link href="#">
               <a className={classes.link}>
                 <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
@@ -100,21 +110,7 @@ export default function Home() {
               </a>
             </Link>
           </Grid>
-          <Grid item xs={2}>
-          </Grid>
         </Grid>
-
-        {/* <AppBar position="static" className={classes.appBar}>
-          <Toolbar>
-            <img src="/images/sitecore_logo.svg" alt="logo" className={classes.logoImage}/>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-            </IconButton>
-            <Typography variant="h6">
-              News
-            </Typography>
-            <Button color="inherit">Login</Button>
-          </Toolbar>
-        </AppBar> */}
         <Box my={4} className={classes.box}>
           <Typography className={classes.title} variant="h4" component="h1" gutterBottom>
             Sitecore Community
