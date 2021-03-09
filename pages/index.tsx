@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridItem: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
     flexDirection: "column",
     [theme.breakpoints.up('sm')]: {
