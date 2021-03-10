@@ -7,6 +7,10 @@ import { LatestNewsAndArticles } from '../components/latestNewsAndArticles';
 import { CallToActionCards } from '../components/callToActionCards';
 import { ThreeVideoGrid } from '../components/threeVideoGrid';
 import { makeStyles } from '@material-ui/core/styles';
+import { GetStaticProps } from 'next'
+import { client } from '../lib/gql'
+import { gql } from '@apollo/client'
+import { Announcement, AnnouncementId, AnnouncementPrefix } from '../interfaces/announcements'
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -22,11 +26,9 @@ const useStyles = makeStyles(() => ({
 
 
 
-export default function Home() {
-
+export default function Home({announcements} : {announcements: Announcement[]}) {
   const classes = useStyles();
-
-
+  
   return (
     <div>
       <Head>
@@ -43,7 +45,7 @@ export default function Home() {
 
         <CallToActionCards />
 
-        <LatestNewsAndArticles />
+        <LatestNewsAndArticles announcements={announcements} />
 
         <ThreeVideoGrid />
       </Container>
@@ -52,3 +54,26 @@ export default function Home() {
   )
 }
 
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await client.query<Announcement>({
+      query: gql`
+      { 
+        allM_Content_${AnnouncementId}
+        {
+          results
+          {
+            _${AnnouncementPrefix}_Title,
+            _${AnnouncementPrefix}_Description,
+            _${AnnouncementPrefix}_LinkURL
+          }
+        }
+      }      
+      `
+  });
+
+  return {
+      props: {
+          announcements: data[`allM_Content_${AnnouncementId}`].results
+      }
+  }
+}
