@@ -59,6 +59,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
       props: {
           announcements: announcements
-      }
+      },
+      revalidate: 1
   }
 }
