@@ -1,23 +1,24 @@
 import { client } from '../lib/gql'
 import { gql } from '@apollo/client'
-import { Announcement, AnnouncementId, AnnouncementPrefix } from '../interfaces/announcements'
+import { AnnouncementResult } from '../interfaces/announcements'
 
 export async function GetTopAnnouncements(count: number) {
-    var announcements = await client.query<Announcement[]>({
+    var { data } = await client.query<AnnouncementResult>({
         query: gql`
         { 
-          allM_Content_${AnnouncementId}
+          allM_Content_360c6
           {
             results
             {
-              _${AnnouncementPrefix}_Title,
-              _${AnnouncementPrefix}_Description,
-              _${AnnouncementPrefix}_LinkURL
+              _60c6_Title,
+              _60c6_Description,
+              _60c6_LinkURL,
+              id
             }
           }
         }      
         `
     })
 
-    return announcements.data.slice(0,count);
+    return data.allM_Content_360c6.results.slice(0,count);
 }

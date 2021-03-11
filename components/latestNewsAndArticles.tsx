@@ -59,8 +59,8 @@ export function LatestNewsAndArticles({ announcements }: { announcements: Announ
             Annoucements
           </Typography>
           
-          {announcements.map(({_60c6_Title, _60c6_Description, _60c6_LinkURL}) => (
-            <SingleAnnoucement title={_60c6_Title} description={_60c6_Description} linkUrl={_60c6_LinkURL} />
+          {announcements.map(({id, _60c6_Title, _60c6_Description, _60c6_LinkURL}) => (
+            <SingleAnnoucement key={id} title={_60c6_Title} description={_60c6_Description} linkUrl={_60c6_LinkURL} />
           ))}
         </Box>
       </Grid>

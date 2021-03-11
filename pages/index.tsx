@@ -8,9 +8,8 @@ import { CallToActionCards } from '../components/callToActionCards';
 import { ThreeVideoGrid } from '../components/threeVideoGrid';
 import { makeStyles } from '@material-ui/core/styles';
 import { GetStaticProps } from 'next'
-import { client } from '../lib/gql'
-import { gql } from '@apollo/client'
-import { Announcement, AnnouncementId, AnnouncementPrefix } from '../interfaces/announcements'
+import { Announcement, AnnouncementId } from '../interfaces/announcements'
+import { GetTopAnnouncements } from '../lib/announcements'
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -23,8 +22,6 @@ const useStyles = makeStyles(() => ({
     borderRadius: "1rem"
   }
 }));
-
-
 
 export default function Home({announcements} : {announcements: Announcement[]}) {
   const classes = useStyles();
@@ -55,25 +52,10 @@ export default function Home({announcements} : {announcements: Announcement[]}) 
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await client.query<Announcement>({
-      query: gql`
-      { 
-        allM_Content_${AnnouncementId}
-        {
-          results
-          {
-            _${AnnouncementPrefix}_Title,
-            _${AnnouncementPrefix}_Description,
-            _${AnnouncementPrefix}_LinkURL
-          }
-        }
-      }      
-      `
-  });
-
+  let announcements = await GetTopAnnouncements(3)
   return {
       props: {
-          announcements: data[`allM_Content_${AnnouncementId}`].results
+          announcements: announcements
       }
   }
 }
