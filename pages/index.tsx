@@ -8,6 +8,7 @@ import { CallToActionCards } from '../components/callToActionCards';
 import { ThreeVideoGrid } from '../components/threeVideoGrid';
 import { makeStyles } from '@material-ui/core/styles';
 import NavBar from '../components/navBar';
+import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = makeStyles(() => ({
@@ -20,6 +21,12 @@ const useStyles = makeStyles(() => ({
     padding: "5rem",
     borderRadius: "1rem",
     marginTop: "0px"
+  },
+  footer: {
+    backgroundColor: "gray",
+    marginTop: "2rem",
+    padding: "2rem",
+    height: "200px",
   }
 }));
 
@@ -49,6 +56,16 @@ export default function Home() {
 
         <ThreeVideoGrid />
       </Container>
+      <Box className={classes.footer}>
+        <Grid container justify="center" spacing={1}>
+          <Grid item md={2} xs={12}>
+            Content Here
+            </Grid>
+              More content over here
+            <Grid item sm={10} xs={12}>
+          </Grid>
+        </Grid>
+      </Box>
     </div>
 
   )
