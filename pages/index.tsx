@@ -7,8 +7,10 @@ import { LatestNewsAndArticles } from '../components/latestNewsAndArticles';
 import { CallToActionCards } from '../components/callToActionCards';
 import { ThreeVideoGrid } from '../components/threeVideoGrid';
 import { makeStyles } from '@material-ui/core/styles';
+import { GetStaticProps } from 'next'
+import { Announcement } from '../interfaces/announcements'
+import { GetTopAnnouncements } from '../lib/announcements'
 import NavBar from '../components/navBar';
-
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -23,9 +25,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-
-
-export default function Home() {
+export default function Home({announcements} : {announcements: Announcement[]}) {
   const classes = useStyles();
 
   return (
@@ -45,7 +45,7 @@ export default function Home() {
 
         <CallToActionCards />
 
-        <LatestNewsAndArticles />
+        <LatestNewsAndArticles announcements={announcements} />
 
         <ThreeVideoGrid />
       </Container>
@@ -54,3 +54,11 @@ export default function Home() {
   )
 }
 
+export const getStaticProps: GetStaticProps = async () => {
+  let announcements = await GetTopAnnouncements(3)
+  return {
+      props: {
+          announcements: announcements
+      }
+  }
+}
