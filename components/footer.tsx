@@ -28,6 +28,10 @@ const useStyles = makeStyles(() => ({
     },
     footerLink: {
         textDecoration: "none"
+    },
+    copyright: {
+        color: "white",
+        paddingTop: "5rem"
     }
 
 }));
@@ -91,6 +95,9 @@ export default function Footer() {
                             <FooterLink linkText="Trust center" />
                         </Grid>
                     </Grid>
+                    <Typography className={classes.copyright} variant="body2">
+                        © Copyright 2020, Sitecore. All Rights Reserved | Legal | Privacy | Own the Experience® | webmaster@sitecore.net | +1-855-Sitecore
+                    </Typography>
                 </Container>
             </Box>
         </div>
