@@ -16,7 +16,8 @@ import Footer from '../components/footer';
 const useStyles = makeStyles(() => ({
   title: {
     color: "white",
-    paddingBottom: "10px"
+    paddingBottom: "10px",
+    textAlign: "center"
   },
   box: {
     backgroundColor: '#424242',
