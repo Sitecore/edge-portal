@@ -11,11 +11,12 @@ import { GetStaticProps } from 'next'
 import { Announcement } from '../interfaces/announcements'
 import { GetTopAnnouncements } from '../lib/announcements'
 import NavBar from '../components/navBar';
+import Footer from '../components/footer';
 
 const useStyles = makeStyles(() => ({
   title: {
-    textAlign: 'center',
-    color: "white"
+    color: "white",
+    paddingBottom: "10px"
   },
   box: {
     backgroundColor: '#424242',
@@ -42,15 +43,14 @@ export default function Home({announcements} : {announcements: Announcement[]}) 
             Get up and running quickly
         </Typography>
         </Box>
-
         <CallToActionCards />
 
         <LatestNewsAndArticles announcements={announcements} />
 
         <ThreeVideoGrid />
       </Container>
-    </div>
-
+      <Footer />
+    </div >
   )
 }
 
