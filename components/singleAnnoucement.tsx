@@ -9,8 +9,24 @@ export const useStyles = makeStyles(() => ({
   card: {
     flexGrow: 1,
     marginTop: 5,
-    border: 'none',
-    boxShadow: 'none'
+    boxShadow: 'none',
+    position: "relative",
+    display: "flex",
+    padding: "1.25rem",
+
+    '&::after' : {
+      display: "block",
+      content: '""',
+      width: "calc(100% /2)",
+      height: "calc(100% /2)",
+      position: "absolute",
+      top: "0px",
+      left: "0px",
+      borderTop: "15px solid #fe2911",
+      borderLeft: "15px solid #fe2911",
+      pointerEvents: "none"
+    }
+
   },
   title: {
     fontWeight: 700,
@@ -34,7 +50,7 @@ export const useStyles = makeStyles(() => ({
   arrow: {
     verticalAlign: "top",
     marginTop: "4px",
-    marginLeft: "1px",
+    marginLeft: "5px",
     "-webkit-transition": "all 0.25s",
     transition: "all 0.25s",
     display: "inline-block",

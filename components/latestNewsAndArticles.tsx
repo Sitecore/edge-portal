@@ -18,6 +18,9 @@ export const useStyles = makeStyles((theme) => ({
   gridPadding: {
     padding: 15
   },
+  announcements: {
+    marginBottom: "25px"
+  }
 }));
 
 function generateListItems(element: any) {
@@ -55,8 +58,8 @@ export function LatestNewsAndArticles({ announcements }: { announcements: Announ
       </Grid>
       <Grid item xs={3}>
         <Box>
-          <Typography variant="h5" component="h1" gutterBottom>
-            Annoucements
+          <Typography variant="h5" component="h1" className={classes.announcements} gutterBottom>
+            ANNOUCEMENTS
           </Typography>
           
           {announcements.map(({id, _60c6_Title, _60c6_Description, _60c6_LinkURL}) => (
