@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import React from "react";
 import { LatestNewsAndArticles } from "../components/latestNewsAndArticles";
@@ -12,6 +10,7 @@ import { Announcement } from "../interfaces/announcements";
 import { GetTopAnnouncements } from "../lib/announcements";
 import NavBar from "../components/navBar";
 import Footer from "../components/footer";
+import HeroBanner from "../components/heroBanner"
 
 const useStyles = makeStyles(() => ({
 	title: {
@@ -45,14 +44,7 @@ export default function Home({ announcements }: { announcements: Announcement[] 
 
 			<NavBar />
 
-			<Box my={4} className={classes.box}>
-				<Typography className={classes.title} variant="h4" component="h1" gutterBottom>
-					Sitecore Community
-				</Typography>
-				<Typography className={classes.title} variant="h5" component="h1" gutterBottom>
-					Get up and running quickly
-				</Typography>
-			</Box>
+			<HeroBanner />
 
 			<div className={classes.ctaCards}>
 				<Container maxWidth="lg">
