@@ -25,9 +25,6 @@ const useStyles = makeStyles(() => ({
 		marginTop: 0,
 		marginBottom: 0,
 	},
-	navBar: {
-		backgroundColor: "#fff",
-	},
 	ctaCards: {
 		backgroundColor: "#fff",
 		paddingTop: 64,
@@ -46,11 +43,7 @@ export default function Home({ announcements }: { announcements: Announcement[] 
 		<div>
 			<Head></Head>
 
-			<div className={classes.navBar}>
-				<Container maxWidth="lg">
-					<NavBar />
-				</Container>
-			</div>
+			<NavBar />
 
 			<Box my={4} className={classes.box}>
 				<Typography className={classes.title} variant="h4" component="h1" gutterBottom>
