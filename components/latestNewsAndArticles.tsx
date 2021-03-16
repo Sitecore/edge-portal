@@ -36,7 +36,7 @@ export function LatestNewsAndArticles({ announcements }: { announcements: Announ
 
   return (
     <Grid container justify="center" spacing={5} className={classes.gridPadding}>
-      <Grid item xs={9}>
+      <Grid item xs={12} md={6}>
         <Box>
           <Typography variant="h5" component="h1" gutterBottom>
             Latest News
@@ -56,7 +56,7 @@ export function LatestNewsAndArticles({ announcements }: { announcements: Announ
           </div>
         </Box>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={6}>
         <Box>
           <Typography variant="h5" component="h1" className={classes.announcements} gutterBottom>
             ANNOUCEMENTS
