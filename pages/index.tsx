@@ -1,3 +1,4 @@
+
 import Head from 'next/head'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -14,47 +15,45 @@ import NavBar from '../components/navBar';
 import Footer from '../components/footer';
 
 const useStyles = makeStyles(() => ({
-  title: {
-    color: "white",
-    paddingBottom: "10px",
-    textAlign: "center"
-  },
-  box: {
-    backgroundColor: '#424242',
-    padding: "5rem",
-    borderRadius: "1rem",
-    marginTop: "0px"
-  }
+	title: {
+		textAlign: "center",
+		color: "white",
+	},
+	box: {
+		backgroundColor: "#424242",
+		padding: "5rem",
+		borderRadius: "0",
+	},
 }));
 
 export default function Home({announcements} : {announcements: Announcement[]}) {
   const classes = useStyles();
+    
+	return (
+		<div>
+			<Head></Head>
 
-  return (
-    <div>
-      <Head>
-      </Head>
-      <Container maxWidth="lg">
-        <NavBar />
-        <Box my={4} className={classes.box}>
-          <Typography className={classes.title} variant="h4" component="h1" gutterBottom>
-            Sitecore Community
-        </Typography>
-          <Typography className={classes.title} variant="h5" component="h1" gutterBottom>
-            Get up and running quickly
-        </Typography>
-        </Box>
-        <CallToActionCards />
+			<Box my={4} className={classes.box}>
+				<Typography className={classes.title} variant="h4" component="h1" gutterBottom>
+					Sitecore Community
+				</Typography>
+				<Typography className={classes.title} variant="h5" component="h1" gutterBottom>
+					Get up and running quickly
+				</Typography>
+			</Box>
+			<Container maxWidth="md">
+				<CallToActionCards />
 
-        <LatestNewsAndArticles announcements={announcements} />
+				<LatestNewsAndArticles announcements={announcements} />
 
-        <ThreeVideoGrid />
-      </Container>
+				<ThreeVideoGrid />
+			</Container>
+      
       <Footer />
-    </div >
-  )
+		</div>
+	);
 }
-
+  
 export const getStaticProps: GetStaticProps = async () => {
   let announcements = await GetTopAnnouncements(3)
   return {
