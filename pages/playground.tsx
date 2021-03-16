@@ -1,29 +1,6 @@
 import { GetStaticProps } from 'next'
-import { ApolloClient, InMemoryCache, gql, createHttpLink, ApolloLink, from } from '@apollo/client'
-
-const httpLink = createHttpLink({
-    uri: process.env.CH_PREVIEW_URL,
-});
-
-const authMiddleware = new ApolloLink((operation, forward) => {
-    // add the authorization to the headers
-    operation.setContext(({ headers = {} }) => ({
-        headers: {
-            ...headers,
-            'X-GQL-Token': process.env.CH_PREVIEW_TOKEN
-        }
-    }));
-
-    return forward(operation);
-});
-
-const client = new ApolloClient({
-    link: from([
-        authMiddleware,
-        httpLink
-    ]),
-    cache: new InMemoryCache()
-});
+import { gql } from '@apollo/client'
+import { client } from '../lib/gql'
 
 export default function Playground({ contentTypes }: { contentTypes: any }) {
     return (
