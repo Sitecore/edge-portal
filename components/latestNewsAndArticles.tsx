@@ -8,7 +8,8 @@ import FolderIcon from '@material-ui/icons/Folder';
 import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Annoucement } from './annoucement';
+import { SingleAnnoucement } from './singleAnnoucement';
+import { Announcement } from '../interfaces/announcements'
 
 export const useStyles = makeStyles((theme) => ({
   demo: {
@@ -17,6 +18,9 @@ export const useStyles = makeStyles((theme) => ({
   gridPadding: {
     padding: 15
   },
+  announcements: {
+    marginBottom: "25px"
+  }
 }));
 
 function generateListItems(element: any) {
@@ -27,7 +31,7 @@ function generateListItems(element: any) {
   );
 }
 
-export function LatestNewsAndArticles() {
+export function LatestNewsAndArticles({ announcements }: { announcements: Announcement[] }) {
   const classes = useStyles();
 
   return (
@@ -54,11 +58,13 @@ export function LatestNewsAndArticles() {
       </Grid>
       <Grid item xs={3}>
         <Box>
-          <Typography variant="h5" component="h1" gutterBottom>
-            Annoucements
-        </Typography>
-          <Annoucement />
-          <Annoucement />
+          <Typography variant="h5" component="h1" className={classes.announcements} gutterBottom>
+            ANNOUCEMENTS
+          </Typography>
+          
+          {announcements.map(({id, _60c6_Title, _60c6_Description, _60c6_LinkURL}) => (
+            <SingleAnnoucement key={id} title={_60c6_Title} description={_60c6_Description} linkUrl={_60c6_LinkURL} />
+          ))}
         </Box>
       </Grid>
     </Grid>
