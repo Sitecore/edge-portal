@@ -38,4 +38,12 @@ const options = {
 	},
 };
 const Theme: MuiTheme = createMuiTheme(options as ThemeOptions);
+
+Theme.typography.h3 = {
+	fontWeight: 400,
+	fontFamily: "'Open Sans', 'Helvetica', 'Arial', sans-serif",
+	fontSize: "1.5rem",
+	textTransform: "uppercase",
+};
+
 export default Theme;
