@@ -23,7 +23,7 @@ export const useStyles = makeStyles((theme) => ({
 	articleList: {
 		"&:before": {
 			content: "''",
-			backgroundColor: "#d4d9df",
+			backgroundColor: theme.palette.background.darkGrey,
 			display: "inline-block",
 			position: "absolute",
 			left: "12px",

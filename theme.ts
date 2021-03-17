@@ -19,7 +19,8 @@ const options = {
 			purple: "#9933cc",
 		},
 		background: {
-			grey: "#f6f6f6",
+			lightGrey: "#f6f6f6",
+			darkGrey: "#d4d9df",
 			white: "#ffffff",
 		},
 	},

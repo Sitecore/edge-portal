@@ -10,33 +10,22 @@ import { Announcement } from "../interfaces/announcements";
 import { GetTopAnnouncements } from "../lib/announcements";
 import NavBar from "../components/navBar";
 import Footer from "../components/footer";
-import HeroBanner from "../components/heroBanner"
-import { HeroBannerData } from '../interfaces/heroBannerData'
+import HeroBanner from "../components/heroBanner";
+import { HeroBannerData } from "../interfaces/heroBannerData";
 
-const useStyles = makeStyles(() => ({
-	title: {
-		textAlign: "center",
-		color: "white",
-	},
-	box: {
-		backgroundColor: "#424242",
-		padding: "5rem",
-		borderRadius: "0",
-		marginTop: 0,
-		marginBottom: 0,
-	},
+const useStyles = makeStyles((theme) => ({
 	ctaCards: {
-		backgroundColor: "#fff",
+		backgroundColor: theme.palette.background.white,
 		paddingTop: 64,
 		paddingBottom: 64,
 	},
 	grey: {
-		backgroundColor: "#f6f6f6",
+		backgroundColor: theme.palette.background.lightGrey,
 		marginTop: "20px",
 	},
 }));
 
-export default function Home({ announcements, heroBannerData }: { announcements: Announcement[], heroBannerData: HeroBannerData }) {
+export default function Home({ announcements, heroBannerData }: { announcements: Announcement[]; heroBannerData: HeroBannerData }) {
 	const classes = useStyles();
 
 	return (
@@ -66,13 +55,13 @@ export default function Home({ announcements, heroBannerData }: { announcements:
 export const getStaticProps: GetStaticProps = async () => {
 	const announcements = await GetTopAnnouncements(3);
 	const heroBannerData: HeroBannerData = {
-		Title: 'Sitecore Community',
-		SubTitle: 'Get up and running quickly'
-	}
+		Title: "Sitecore Community",
+		SubTitle: "Get up and running quickly",
+	};
 	return {
 		props: {
 			announcements: announcements,
-			heroBannerData: heroBannerData
+			heroBannerData: heroBannerData,
 		},
 		revalidate: 1,
 	};
