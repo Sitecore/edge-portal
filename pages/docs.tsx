@@ -5,8 +5,11 @@ import Footer from "../components/footer";
 import HeroBanner from "../components/heroBanner"
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
+import { HeroBannerData } from '../interfaces/heroBannerData'
+import { GetStaticProps } from "next";
 
-export default function Docs() {
+
+export default function Docs({ heroBannerData }: { heroBannerData: HeroBannerData }) {
 	return (
 		<div>
 			<Head>
@@ -15,7 +18,7 @@ export default function Docs() {
 
 			<NavBar />
 
-			<HeroBanner />
+			<HeroBanner data={heroBannerData} />
 
 			<Box>
 				<Grid container justify="center" spacing={5}>
@@ -32,3 +35,16 @@ export default function Docs() {
 		</div>
 	)
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+	const heroBannerData: HeroBannerData = {
+		Title: 'Documentation',
+		SubTitle: 'Learn eveything you need to know!'
+	}
+	return {
+		props: {
+			heroBannerData: heroBannerData
+		},
+		revalidate: 1,
+	};
+};
