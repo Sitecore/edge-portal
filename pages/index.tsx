@@ -12,6 +12,8 @@ import NavBar from "../components/navBar";
 import Footer from "../components/footer";
 import HeroBanner from "../components/heroBanner";
 import { HeroBannerData } from "../interfaces/heroBannerData";
+import { Article } from "../interfaces/articles";
+import { GetLatestArticles } from "../lib/articles";
 
 const useStyles = makeStyles((theme) => ({
 	ctaCards: {
@@ -25,7 +27,15 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Home({ announcements, heroBannerData }: { announcements: Announcement[]; heroBannerData: HeroBannerData }) {
+export default function Home({
+	announcements,
+	articles,
+	heroBannerData,
+}: {
+	announcements: Announcement[];
+	heroBannerData: HeroBannerData;
+	articles: Article[];
+}) {
 	const classes = useStyles();
 
 	return (
@@ -43,7 +53,7 @@ export default function Home({ announcements, heroBannerData }: { announcements:
 			</div>
 
 			<Container maxWidth="lg" className={classes.grey}>
-				<LatestNewsAndArticles announcements={announcements} />
+				<LatestNewsAndArticles announcements={announcements} articles={articles} />
 				<ThreeVideoGrid />
 			</Container>
 
@@ -54,6 +64,8 @@ export default function Home({ announcements, heroBannerData }: { announcements:
 
 export const getStaticProps: GetStaticProps = async () => {
 	const announcements = await GetTopAnnouncements(3);
+	const articles = await GetLatestArticles(4);
+
 	const heroBannerData: HeroBannerData = {
 		Title: "Sitecore Community",
 		SubTitle: "Get up and running quickly",
@@ -62,6 +74,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		props: {
 			announcements: announcements,
 			heroBannerData: heroBannerData,
+			articles: articles,
 		},
 		revalidate: 1,
 	};

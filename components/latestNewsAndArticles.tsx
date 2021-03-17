@@ -8,6 +8,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { SingleAnnoucement } from "./singleAnnoucement";
 import { Announcement } from "../interfaces/announcements";
+import { Article } from "../interfaces/articles";
 
 export const useStyles = makeStyles((theme) => ({
 	gridPadding: {
@@ -38,7 +39,8 @@ export const useStyles = makeStyles((theme) => ({
 			display: "inline-block",
 			position: "absolute",
 			borderRadius: "50%",
-			border: "3px solid #fe2911",
+			border: "3px solid",
+			borderColor: theme.palette.primary.red,
 			left: "0px",
 			width: "20px",
 			height: "20px",
@@ -51,15 +53,7 @@ export const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function generateListItems(element: any) {
-	return [0, 1, 2, 4, 5, 6].map((value) =>
-		React.cloneElement(element, {
-			key: value,
-		})
-	);
-}
-
-export function LatestNewsAndArticles({ announcements }: { announcements: Announcement[] }) {
+export function LatestNewsAndArticles({ announcements, articles }: { announcements: Announcement[]; articles: Article[] }) {
 	const classes = useStyles();
 
 	return (
@@ -70,22 +64,22 @@ export function LatestNewsAndArticles({ announcements }: { announcements: Announ
 						Latest News
 					</Typography>
 					<List className={classes.articleList}>
-						{generateListItems(
+						{articles.map(({ Title, Abstract, PublishDate }) => (
 							<ListItem className={classes.listItem}>
 								<ListItemText
 									className={classes.listItemText}
 									primary={
 										<React.Fragment>
-											{"Lorem ipsum dolor sit ametn"}
+											{Title}
 											<Typography component="span" className={classes.date} color="textPrimary">
-												March 15, 2021
+												{PublishDate}
 											</Typography>
 										</React.Fragment>
 									}
-									secondary="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula...."
+									secondary={Abstract}
 								/>
 							</ListItem>
-						)}
+						))}
 					</List>
 				</Box>
 			</Grid>
