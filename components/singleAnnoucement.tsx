@@ -3,8 +3,9 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "next/link";
+import Theme from "../theme";
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
 	card: {
 		flexGrow: 1,
 		marginTop: 40,
@@ -24,8 +25,9 @@ export const useStyles = makeStyles(() => ({
 			position: "absolute",
 			top: "-15px",
 			left: "-15px",
-			borderTop: "15px solid #fe2911",
-			borderLeft: "15px solid #fe2911",
+			borderTop: "15px solid",
+			borderLeft: "15px solid",
+			borderColor: theme.palette.primary.red,
 			pointerEvents: "none",
 		},
 	},
