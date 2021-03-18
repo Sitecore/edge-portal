@@ -23,27 +23,27 @@ export const useStyles = makeStyles((theme) => ({
 		display: "inline-grid",
 	},
 	blue: {
-		backgroundColor: theme.palette.primary.blue,
+		backgroundColor: theme.palette.info.main,
 		"&:hover": {
-			backgroundColor: theme.palette.secondary.blue,
+			backgroundColor: theme.palette.info.dark,
 		},
 	},
 	teal: {
-		backgroundColor: theme.palette.primary.teal,
+		backgroundColor: theme.palette.secondary.main,
 		"&:hover": {
-			backgroundColor: theme.palette.secondary.teal,
+			backgroundColor: theme.palette.secondary.dark,
 		},
 	},
 	red: {
-		backgroundColor: theme.palette.primary.red,
+		backgroundColor: theme.palette.primary.main,
 		"&:hover": {
-			backgroundColor: theme.palette.secondary.red,
+			backgroundColor: theme.palette.primary.dark,
 		},
 	},
 	purple: {
-		backgroundColor: theme.palette.primary.purple,
+		backgroundColor: theme.palette.warning.main,
 		"&:hover": {
-			backgroundColor: theme.palette.secondary.purple,
+			backgroundColor: theme.palette.warning.dark,
 		},
 	},
 	padding: {

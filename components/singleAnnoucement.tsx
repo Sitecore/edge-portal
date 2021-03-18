@@ -27,7 +27,7 @@ export const useStyles = makeStyles((theme) => ({
 			left: "-15px",
 			borderTop: "15px solid",
 			borderLeft: "15px solid",
-			borderColor: theme.palette.primary.red,
+			borderColor: theme.palette.primary.main,
 			pointerEvents: "none",
 		},
 	},

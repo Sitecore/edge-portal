@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
 	articleList: {
 		"&:before": {
 			content: "''",
-			backgroundColor: theme.palette.background.darkGrey,
+			backgroundColor: theme.palette.grey[300],
 			display: "inline-block",
 			position: "absolute",
 			left: "12px",
@@ -40,7 +40,7 @@ export const useStyles = makeStyles((theme) => ({
 			position: "absolute",
 			borderRadius: "50%",
 			border: "3px solid",
-			borderColor: theme.palette.primary.red,
+			borderColor: theme.palette.primary.main,
 			left: "0px",
 			width: "20px",
 			height: "20px",

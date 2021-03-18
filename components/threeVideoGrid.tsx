@@ -9,10 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
 	avatar: {
-		backgroundColor: theme.palette.primary.red,
+		backgroundColor: theme.palette.primary.main,
 	},
 	header: {
-		borderBottom: "1px solid #f0f0f0",
+		borderBottom: "1px solid" + theme.palette.grey[300],
 	},
 }));
 

@@ -3,25 +3,25 @@ import { Theme as MuiTheme, ThemeOptions } from "@material-ui/core/styles/create
 
 const options = {
 	palette: {
+		common: {
+			black: "#000000",
+			white: "#ffffff",
+		},
 		type: "light",
 		primary: {
-			main: "#faaf4a",
-			red: "#fe2911",
-			teal: "#19A5A2",
-			blue: "#0085eb",
-			purple: "#673ab7",
+			main: "#fe2911",
 		},
 		secondary: {
-			main: "#faaf4a",
-			red: "#bf1f0d",
-			teal: "#137C7A",
-			blue: "#0064b0",
-			purple: "#9933cc",
+			main: "#137C7A",
 		},
-		background: {
-			lightGrey: "#f6f6f6",
-			darkGrey: "#d4d9df",
-			white: "#ffffff",
+		warning: {
+			main: "#faaf4a",
+		},
+		info: {
+			main: "#0085eb",
+		},
+		success: {
+			main: "#673ab7",
 		},
 	},
 	typography: {

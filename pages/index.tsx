@@ -17,12 +17,12 @@ import { GetLatestArticles } from "../lib/articles";
 
 const useStyles = makeStyles((theme) => ({
 	ctaCards: {
-		backgroundColor: theme.palette.background.white,
+		backgroundColor: theme.palette.common.white,
 		paddingTop: 64,
 		paddingBottom: 64,
 	},
 	grey: {
-		backgroundColor: theme.palette.background.lightGrey,
+		backgroundColor: theme.palette.grey[100],
 		marginTop: "20px",
 	},
 }));
