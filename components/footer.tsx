@@ -1,12 +1,12 @@
 import Typography from '@material-ui/core/Typography';
-import Link from 'next/link';
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { Box } from '@material-ui/core';
+import { FooterLink } from './FooterLink';
 
-const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles(() => ({
     title: {
         color: "white",
         paddingBottom: "10px",
@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
         padding: "2rem",
     },
     footerLinkText: {
-        color: "white",
+        color: "pink",
         paddingBottom: ".5rem",
         paddingRight: ".5rem",
         paddingLeft: ".5rem"
@@ -42,28 +42,7 @@ const useStyles = makeStyles(() => ({
         paddingTop: "5rem",
         display: "flex",
     }
-
-
 }));
-
-interface FooterLinkData {
-    LinkUrl: string,
-    LinkText: string
-}
-
-export function FooterLink(props: FooterLinkData) {
-    const classes = useStyles();
-
-    return (
-        <Link href={props.LinkUrl}>
-            <a className={classes.footerLink}>
-                <Typography className={classes.footerLinkText} variant="body2" gutterBottom>
-                    {props.LinkText}
-                </Typography>
-            </a>
-        </Link>
-    )
-}
 
 export default function Footer() {
     const classes = useStyles();
