@@ -1,8 +1,8 @@
-import { client } from "../lib/gql";
+import { client } from "./gql";
 import { gql } from "@apollo/client";
-import { BlogpostsResult } from "../interfaces/articles";
+import { BlogpostsResult } from "../interfaces/blogposts";
 
-export async function GetLatestArticles(count: number) {
+export async function GetLatestBlogposts(count: number) {
 	var { data } = await client.query<BlogpostsResult>({
 		query: gql`
 			{

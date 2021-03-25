@@ -8,7 +8,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { SingleAnnoucement } from "./singleAnnoucement";
 import { Announcement } from "../interfaces/announcements";
-import { Article } from "../interfaces/articles";
+import { Blogpost } from "../interfaces/blogposts";
 
 export const useStyles = makeStyles((theme) => ({
 	gridPadding: {
@@ -53,7 +53,7 @@ export const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export function LatestNewsAndArticles({ announcements, articles }: { announcements: Announcement[]; articles: Article[] }) {
+export function LatestNewsAndArticles({ announcements, blogposts }: { announcements: Announcement[]; blogposts: Blogpost[] }) {
 	const classes = useStyles();
 
 	return (
@@ -64,7 +64,7 @@ export function LatestNewsAndArticles({ announcements, articles }: { announcemen
 						Latest News
 					</Typography>
 					<List className={classes.articleList}>
-						{articles.map(({ Title, Abstract, PublishDate }) => (
+						{blogposts.map(({ Title, Abstract, PublishDate }) => (
 							<ListItem className={classes.listItem}>
 								<ListItemText
 									className={classes.listItemText}
@@ -89,8 +89,8 @@ export function LatestNewsAndArticles({ announcements, articles }: { announcemen
 						ANNOUNCEMENTS
 					</Typography>
 
-					{announcements.map(({ id, Title, Description, Url }) => (
-						<SingleAnnoucement key={id} title={Title} description={Description} linkUrl={Url} />
+					{announcements.map(({ Id, Title, Description, Url }) => (
+						<SingleAnnoucement key={Id} title={Title} description={Description} linkUrl={Url} />
 					))}
 				</Box>
 			</Grid>
