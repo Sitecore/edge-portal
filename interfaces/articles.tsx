@@ -1,17 +1,17 @@
-export type Article = {
+export type Blogpost = {
 	id: string;
 	Title: string;
 	Abstract?: string;
 	Body?: string;
 	PublishDate?: string;
 };
-
-export type ArticleList = {
+``;
+export type Blogposts = {
 	__typename: string;
 	total: string;
-	results: Article[];
+	results: Blogpost[];
 };
 
-export type ArticlesResult = {
-	ArticleList: ArticleList;
+export type BlogpostsResult = {
+	Blogposts: Blogposts;
 };
