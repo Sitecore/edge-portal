@@ -38,10 +38,12 @@ export default function GettingStarted({
 	heroBannerData,
 	sectionName,
 	categories,
+	currentCategory,
 }: {
 	heroBannerData: HeroBannerData;
 	sectionName: string;
 	categories: Category[];
+	currentCategory: Category;
 }) {
 	const classes = useStyles();
 
@@ -63,7 +65,9 @@ export default function GettingStarted({
 						</Grid>
 						<Grid item xs={12} md={9}>
 							<Typography variant="h5" component="h1" gutterBottom>
-								{sectionName}
+								{currentCategory.Title}
+
+								<p>{currentCategory.Abstract}</p>
 							</Typography>
 						</Grid>
 					</Grid>
@@ -87,14 +91,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 	var section: Section = await GetMenuStructureBySection("Getting Started");
 	var category: Category = await GetCategory("Getting Started", params.category);
-
+	console.log(params.category);
 	console.log(category);
 
 	return {
 		props: {
 			heroBannerData: heroBannerData,
-			sectionName: category.Name,
+			sectionName: section.Name,
 			categories: section.Categories.results,
+			currentCategory: category,
 		},
 		revalidate: 1,
 	};

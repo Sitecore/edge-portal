@@ -4,6 +4,7 @@ import NavBar from "components/navBar";
 import Footer from "components/footer";
 import HeroBanner from "components/heroBanner";
 import Container from "@material-ui/core/Container";
+import SideNavigation from "components/sideNavigation";
 import Grid from "@material-ui/core/Grid";
 import { HeroBannerData } from "interfaces/heroBannerData";
 import { GetStaticProps } from "next";
@@ -44,11 +45,13 @@ export default function Topic({
 	sectionName,
 	categories,
 	article,
+	t,
 }: {
 	heroBannerData: HeroBannerData;
 	sectionName: string;
 	categories: Category[];
 	article: Article;
+	t: string;
 }) {
 	const classes = useStyles();
 	return (
@@ -65,38 +68,11 @@ export default function Topic({
 				<Container maxWidth="lg">
 					<Grid container>
 						<Grid item xs={12} md={3}>
-							<List
-								component="nav"
-								aria-labelledby="nested-list-subheader"
-								subheader={
-									<ListSubheader component="div" id="nested-list-subheader">
-										{sectionName}
-									</ListSubheader>
-								}
-								className={classes.root}>
-								{categories.map(({ CategoryName, Topics }) => (
-									<React.Fragment>
-										<ListItem button>
-											<Link href={`/getting-started/${encodeURIComponent(CategoryName)}`}>
-												<ListItemText primary={CategoryName} />
-											</Link>
-										</ListItem>
-										<List component="div" disablePadding>
-											{Topics.results.map(({ Name }) => (
-												<ListItem button className={classes.nested}>
-													<Link href={`/getting-started/${encodeURIComponent(CategoryName)}/${encodeURIComponent(Name)}`}>
-														<ListItemText primary={Name} />
-													</Link>
-												</ListItem>
-											))}
-										</List>
-									</React.Fragment>
-								))}
-							</List>
+							<SideNavigation categories={categories} sectionName={sectionName}></SideNavigation>
 						</Grid>
 						<Grid item xs={12} md={9}>
 							<Typography variant="h5" component="h1" gutterBottom>
-								{article.Name}
+								{t}
 							</Typography>
 						</Grid>
 					</Grid>
@@ -127,12 +103,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 			sectionName: section.Name,
 			categories: section.Categories.results,
 			article: article,
+			t: article.Title,
 		},
 		revalidate: 1,
 	};
 };
 
-export async function getStaticPaths(articles: Articles) {
+export async function getStaticPaths(articles: Article) {
 	articles = await GetArticlesByCategory("Getting Started", "Basics");
 	//var section: Section = await GetMenuStructureBySection("Getting Started");
 

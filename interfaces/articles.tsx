@@ -14,7 +14,7 @@ export interface Category {
 	Name: string;
 	Title: string;
 	Body?: any;
-	Quote: string;
+	Abstract: string;
 	Articles: Articles;
 }
 
