@@ -34,19 +34,25 @@ export default function SideNavigation({ categories, sectionName }: { sectionNam
 			className={classes.root}>
 			{categories.map(({ CategoryName, Topics }) => (
 				<React.Fragment>
-					<ListItem button>
+					<ListItem button component="a" href={`/getting-started/${encodeURIComponent(CategoryName)}`}>
 						<Link href={`/getting-started/${encodeURIComponent(CategoryName)}`}>
 							<ListItemText primary={CategoryName} />
 						</Link>
 					</ListItem>
 					<List component="div" disablePadding>
-						{Topics.results.map(({ Name }) => (
-							<ListItem button className={classes.nested}>
-								<Link href={`/getting-started/${encodeURIComponent(CategoryName)}/${encodeURIComponent(Name)}`}>
-									<ListItemText primary={Name} />
-								</Link>
-							</ListItem>
-						))}
+						{Topics.results
+							? Topics.results.map(({ Name }) => (
+									<ListItem
+										button
+										component="a"
+										className={classes.nested}
+										href={`/getting-started/${encodeURIComponent(CategoryName)}/${encodeURIComponent(Name)}`}>
+										<Link href={`/getting-started/${encodeURIComponent(CategoryName)}/${encodeURIComponent(Name)}`}>
+											<ListItemText primary={Name} />
+										</Link>
+									</ListItem>
+							  ))
+							: "Loading"}
 					</List>
 				</React.Fragment>
 			))}
