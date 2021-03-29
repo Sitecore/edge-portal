@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { ThreeVideoGrid } from "components/threeVideoGrid";
 import { Section, Categories, Category } from "interfaces/articles";
 import { GetMenuStructureBySection, GetCategory, GetCategoriesBySection } from "lib/articles";
+import { ParsedUrlQuery } from "querystring";
 
 const useStyles = makeStyles((theme) => ({
 	docsList: {
@@ -33,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
 		paddingLeft: theme.spacing(4),
 	},
 }));
+
+interface IParams extends ParsedUrlQuery {
+	category: string;
+}
 
 export default function GettingStarted({
 	heroBannerData,
@@ -66,8 +71,12 @@ export default function GettingStarted({
 						<Grid item xs={12} md={9}>
 							<Typography variant="h5" component="h1" gutterBottom>
 								{currentCategory.Title}
-
+							</Typography>
+							<Typography variant="body1" gutterBottom>
 								<p>{currentCategory.Abstract}</p>
+							</Typography>
+							<Typography variant="body2" gutterBottom>
+								<p>{currentCategory.Body}</p>
 							</Typography>
 						</Grid>
 					</Grid>
@@ -83,23 +92,23 @@ export default function GettingStarted({
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const heroBannerData: HeroBannerData = {
-		Title: "Getting Started",
-		SubTitle: "Learn eveything you need to know!",
-	};
+export const getStaticProps: GetStaticProps = async (context) => {
+	const { category } = context.params as IParams;
 
 	var section: Section = await GetMenuStructureBySection("Getting Started");
-	var category: Category = await GetCategory("Getting Started", params.category);
-	console.log(params.category);
-	console.log(category);
+	var currentCategory: Category = await GetCategory("Getting Started", category);
+
+	const heroBannerData: HeroBannerData = {
+		Title: currentCategory.Name,
+		SubTitle: "Learn eveything you need to know!",
+	};
 
 	return {
 		props: {
 			heroBannerData: heroBannerData,
 			sectionName: section.Name,
 			categories: section.Categories.results,
-			currentCategory: category,
+			currentCategory: currentCategory,
 		},
 		revalidate: 1,
 	};

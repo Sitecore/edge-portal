@@ -44,11 +44,7 @@ export default function GettingStarted({
 	categories: Category[];
 }) {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(true);
 
-	const handleClick = () => {
-		setOpen(!open);
-	};
 	return (
 		<div>
 			<Head>
@@ -63,7 +59,7 @@ export default function GettingStarted({
 				<Container maxWidth="lg">
 					<Grid container>
 						<Grid item xs={12} md={3}>
-							<SideNavigation categories={categories} sectioName={sectionName}></SideNavigation>
+							<SideNavigation categories={categories} sectionName={sectionName}></SideNavigation>
 						</Grid>
 						<Grid item xs={12} md={9}>
 							<Typography variant="h5" component="h1" gutterBottom>

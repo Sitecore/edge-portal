@@ -1,6 +1,6 @@
 import { client } from "lib/gql";
 import { gql } from "@apollo/client";
-import { Section, Sections, SectionResult, Article, Category } from "interfaces/articles";
+import { SectionResult } from "interfaces/articles";
 
 export async function GetCategoriesBySection(sectionName: string) {
 	var { data } = await client.query<SectionResult>({
@@ -33,8 +33,8 @@ export async function GetMenuStructureBySection(sectionName: string) {
 						Name: taxonomyName
 						Categories: contentTopicToContent(orderBy: CREATEDON_ASC) {
 							results {
-								CategoryName: content_Name
-								Topics: contentToRelatedContent_Children(orderBy: CREATEDON_ASC) {
+								Name: content_Name
+								Articles: contentToRelatedContent_Children(orderBy: CREATEDON_ASC) {
 									results {
 										... on M_Content_f3012 {
 											Name: content_Name

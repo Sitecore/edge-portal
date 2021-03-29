@@ -12,13 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { ThreeVideoGrid } from "components/threeVideoGrid";
 import { GetMenuStructureBySection, GetArticleByName, GetArticlesByCategory } from "lib/articles";
-import { Section } from "lib/interfaces";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { Category, Articles, Article } from "interfaces/articles";
-import Link from "next/link";
+import { Category, Section, Article } from "interfaces/articles";
+import { ParsedUrlQuery } from "querystring";
 
 const useStyles = makeStyles((theme) => ({
 	docsList: {
@@ -40,18 +35,21 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+interface IParams extends ParsedUrlQuery {
+	category: string;
+	topic: string;
+}
+
 export default function Topic({
-	heroBannerData,
+	heroBanner,
 	sectionName,
 	categories,
 	article,
-	t,
 }: {
-	heroBannerData: HeroBannerData;
+	heroBanner: HeroBannerData;
 	sectionName: string;
 	categories: Category[];
 	article: Article;
-	t: string;
 }) {
 	const classes = useStyles();
 	return (
@@ -62,7 +60,7 @@ export default function Topic({
 
 			<NavBar />
 
-			<HeroBanner data={heroBannerData} />
+			<HeroBanner data={heroBanner} />
 
 			<div className={classes.docsList}>
 				<Container maxWidth="lg">
@@ -72,7 +70,13 @@ export default function Topic({
 						</Grid>
 						<Grid item xs={12} md={9}>
 							<Typography variant="h5" component="h1" gutterBottom>
-								{t}
+								{article.Title}
+							</Typography>
+							<Typography variant="body1" gutterBottom>
+								{article.Abstract}
+							</Typography>
+							<Typography variant="body2" gutterBottom>
+								{article.Body}
 							</Typography>
 						</Grid>
 					</Grid>
@@ -88,33 +92,35 @@ export default function Topic({
 	);
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const heroBannerData: HeroBannerData = {
-		Title: "Getting Started",
-		SubTitle: "Learn eveything you need to know!",
-	};
+export const getStaticProps: GetStaticProps = async (context) => {
+	const { category, topic } = context.params as IParams;
 
 	var section: Section = await GetMenuStructureBySection("Getting Started");
-	var article: Article = await GetArticleByName("Getting Started", params.category, params.topic);
+	var article: Article = await GetArticleByName("Getting Started", category, topic);
+
+	var heroBannerData: HeroBannerData = {
+		Title: "Getting Started",
+		SubTitle: "Learn everything you need to know!",
+	};
 
 	return {
 		props: {
-			heroBannerData: heroBannerData,
 			sectionName: section.Name,
 			categories: section.Categories.results,
 			article: article,
-			t: article.Title,
+			heroBanner: heroBannerData,
 		},
 		revalidate: 1,
 	};
 };
 
-export async function getStaticPaths(articles: Article) {
+export async function getStaticPaths(articles: Article[]) {
 	articles = await GetArticlesByCategory("Getting Started", "Basics");
+
 	//var section: Section = await GetMenuStructureBySection("Getting Started");
 
 	return {
-		paths: articles.results?.map(({ Name }) => `/getting-started/Basics/${Name}`) ?? [],
+		paths: articles?.map(({ Name }) => `/getting-started/Basics/${Name}`) ?? [],
 		fallback: true,
 	};
 }

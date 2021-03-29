@@ -3,9 +3,8 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { Category, Article } from "interfaces/articles";
+import { Category } from "interfaces/articles";
 import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,23 +31,24 @@ export default function SideNavigation({ categories, sectionName }: { sectionNam
 				</ListSubheader>
 			}
 			className={classes.root}>
-			{categories.map(({ CategoryName, Topics }) => (
+			{categories.map((category) => (
 				<React.Fragment>
-					<ListItem button component="a" href={`/getting-started/${encodeURIComponent(CategoryName)}`}>
-						<Link href={`/getting-started/${encodeURIComponent(CategoryName)}`}>
-							<ListItemText primary={CategoryName} />
+					<ListItem button component="a" href={`/getting-started/${encodeURIComponent(category.Name)}`}>
+						<Link href={`/getting-started/${encodeURIComponent(category.Name)}`}>
+							<ListItemText primary={category.Name} />
 						</Link>
 					</ListItem>
 					<List component="div" disablePadding>
-						{Topics.results
-							? Topics.results.map(({ Name }) => (
+						{category.Articles.results
+							? category.Articles.results.map((article) => (
 									<ListItem
+										key={article.Name}
 										button
 										component="a"
 										className={classes.nested}
-										href={`/getting-started/${encodeURIComponent(CategoryName)}/${encodeURIComponent(Name)}`}>
-										<Link href={`/getting-started/${encodeURIComponent(CategoryName)}/${encodeURIComponent(Name)}`}>
-											<ListItemText primary={Name} />
+										href={`/getting-started/${encodeURIComponent(category.Name)}/${encodeURIComponent(article.Name)}`}>
+										<Link href={`/getting-started/${encodeURIComponent(category.Name)}/${encodeURIComponent(article.Name)}`}>
+											<ListItemText primary={article.Name} />
 										</Link>
 									</ListItem>
 							  ))
