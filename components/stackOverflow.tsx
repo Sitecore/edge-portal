@@ -20,6 +20,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     headerBox: {
         borderBottom: "1px solid" + theme.palette.grey[300],
+        "&:hover": {
+            backgroundColor: theme.palette.grey[100],
+            cursor: "pointer"
+        },
     },
     gridList: {
         height: 300,
@@ -32,7 +36,6 @@ export const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.grey[100],
             cursor: "pointer"
         },
-
     },
     gridTItleBox: {
         justifyContent: "space-between",
@@ -56,12 +59,15 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
 
     return (
         <Card square className={classes.card}>
-            <Box display="flex" className={classes.headerBox}>
-                <Image src="/images/se-icon.svg" width={50} height={50} />
-                <CardHeader
-                    title="LATEST SITECORE SAAS STACK EXCHANGE QUESTIONS"
-                />
-            </Box>
+            <Link href="https://sitecore.stackexchange.com/">
+                <Box display="flex" className={classes.headerBox}>
+                    <Image src="/images/se-icon.svg" width={50} height={50} />
+                    <CardHeader
+                        title="LATEST SITECORE SAAS STACK EXCHANGE QUESTIONS"
+                    />
+                </Box>
+            </Link>
+
             <CardContent>
                 <GridList cellHeight="auto" className={classes.gridList} cols={1}>
                     {questions.map((question) => (
@@ -94,7 +100,7 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
 function getDaysSinceQuestionWasCreated(creationDataInEpochSeconds: number): number {
     const millisecondsInASecond = 1000;
     const secondsInADay = 86400;
-    
+
     const currentEpochInSeconds = (Date.now() / millisecondsInASecond);
     const secondsSinceCreation = currentEpochInSeconds - creationDataInEpochSeconds;
     const daysSinceCreation = Math.floor(secondsSinceCreation / secondsInADay);
