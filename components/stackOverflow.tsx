@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,20 +9,19 @@ import { StackOverflowQuestion } from '../interfaces/stackOverflowQuestion';
 import Box from '@material-ui/core/Box';
 import Link from 'next/link';
 import { Typography } from '@material-ui/core';
+import Image from 'next/image'
 
 export const useStyles = makeStyles((theme) => ({
     card: {
-        width: 750
+        padding: 10
     },
     avatar: {
         backgroundColor: theme.palette.primary.main,
     },
-    header: {
+    headerBox: {
         borderBottom: "1px solid" + theme.palette.grey[300],
-        fontSize: "200px"
     },
     gridList: {
-        // width: 500,
         height: 300,
     },
     gridTile: {
@@ -58,15 +56,12 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
 
     return (
         <Card square className={classes.card}>
-            <CardHeader
-                avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        S
-					</Avatar>
-                }
-                title="LATEST SITECORE SAAS STACK EXCHANGE QUESTIONS"
-                className={classes.header}
-            />
+            <Box display="flex" className={classes.headerBox}>
+                <Image src="/images/se-icon.svg" width={50} height={50} />
+                <CardHeader
+                    title="LATEST SITECORE SAAS STACK EXCHANGE QUESTIONS"
+                />
+            </Box>
             <CardContent>
                 <GridList cellHeight="auto" className={classes.gridList} cols={1}>
                     {questions.map((question) => (
