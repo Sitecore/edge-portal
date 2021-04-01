@@ -89,7 +89,6 @@ function determineQuestionCreateData(creationDataInEpochSeconds: number): number
     const currentEpochInSeconds = (Date.now() / 1000);
     const between = currentEpochInSeconds - creationDataInEpochSeconds;
     const days = Math.floor(between / 86411);
-    console.log(days);
     return days;
 }
 

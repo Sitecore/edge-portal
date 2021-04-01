@@ -84,8 +84,6 @@ export const getStaticProps: GetStaticProps = async () => {
 	const articles = await GetLatestArticles(4);
 	const stackOverflowQuestions: StackOverflowQuestion[] = await GetStackOverflowQuestionsByTag("jss");
 
-	console.log(stackOverflowQuestions);
-
 	const heroBannerData: HeroBannerData = {
 		Title: "Sitecore Community",
 		SubTitle: "Get up and running quickly",
