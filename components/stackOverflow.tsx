@@ -9,6 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import { StackOverflowQuestion } from '../interfaces/stackOverflowQuestion';
 import Box from '@material-ui/core/Box';
 import Link from 'next/link';
+import { Typography } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
     card: {
@@ -34,9 +35,11 @@ export const useStyles = makeStyles((theme) => ({
 			backgroundColor: theme.palette.grey[100],
             cursor: "pointer"
 		},
+        paddingRight: 10,
+        paddingLeft: 10,
+        marginRight: 5
     },
     questionTitle: {
-        paddingLeft: 10,
         fontWeight: "bold"
     },
     link: {
@@ -66,11 +69,13 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
                         <GridListTile key={question.question_id}>
                             <Link href={question.link}>
                                 <Box display="flex" className={classes.gridTileBox}>
-                                    <div className={classes.questionTitle}>
+                                    <Typography className={classes.questionTitle}>
                                         {question.title}
-                                    </div>
-                                        Created 3 days ago
-                                    </Box>
+                                    </Typography>
+                                    <Typography>
+                                       Created {determineQuestionCreateData(question.creation_date)} days ago
+                                    </Typography>
+                                </Box>
                             </Link>
                         </GridListTile>
                     ))}
@@ -79,3 +84,12 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
         </Card>
     )
 }
+
+function determineQuestionCreateData(creationDataInEpochSeconds: number): number {
+    const currentEpochInSeconds = (Date.now() / 1000);
+    const between = currentEpochInSeconds - creationDataInEpochSeconds;
+    const days = Math.floor(between / 86411);
+    console.log(days);
+    return days;
+}
+
