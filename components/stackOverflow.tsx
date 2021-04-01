@@ -26,18 +26,22 @@ export const useStyles = makeStyles((theme) => ({
         // width: 500,
         height: 300,
     },
-    gridTileBox: {
+    gridTile: {
         border: "1px solid" + theme.palette.grey[300],
+        padding: 10,
+        marginRight: 5,
+        "&:hover": {
+            backgroundColor: theme.palette.grey[100],
+            cursor: "pointer"
+        },
+
+    },
+    gridTItleBox: {
         justifyContent: "space-between",
         alignItems: "center",
-        height: 50,
-        "&:hover": {
-			backgroundColor: theme.palette.grey[100],
-            cursor: "pointer"
-		},
-        paddingRight: 10,
-        paddingLeft: 10,
-        marginRight: 5
+    },
+    secondaryText: {
+        color: theme.palette.grey[500]
     },
     questionTitle: {
         fontWeight: "bold"
@@ -64,17 +68,24 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
                 className={classes.header}
             />
             <CardContent>
-                <GridList cellHeight={55} className={classes.gridList} cols={1}>
+                <GridList cellHeight="auto" className={classes.gridList} cols={1}>
                     {questions.map((question) => (
                         <GridListTile key={question.question_id}>
                             <Link href={question.link}>
-                                <Box display="flex" className={classes.gridTileBox}>
-                                    <Typography className={classes.questionTitle}>
-                                        {question.title}
+                                <Box className={classes.gridTile}>
+                                    <Box display="flex" className={classes.gridTItleBox}>
+                                        <Typography className={classes.questionTitle}>
+                                            {question.title}
+                                        </Typography>
+                                        <Typography>
+                                            Created {determineQuestionCreateData(question.creation_date)} days ago
                                     </Typography>
-                                    <Typography>
-                                       Created {determineQuestionCreateData(question.creation_date)} days ago
-                                    </Typography>
+                                    </Box>
+                                    <Box display="flex">
+                                        <Typography className={classes.secondaryText}>
+                                            Answer Count: {question.answer_count}
+                                        </Typography>
+                                    </Box>
                                 </Box>
                             </Link>
                         </GridListTile>
