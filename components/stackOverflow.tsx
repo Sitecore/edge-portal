@@ -79,7 +79,7 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
                                             {question.title}
                                         </Typography>
                                         <Typography>
-                                            Created {getDaysSinceQuestionWasCreated(question.creation_date)} days ago
+                                            {getDaysSinceQuestionWasCreatedText(question.creation_date)}
                                     </Typography>
                                     </Box>
                                     <Box display="flex">
@@ -97,13 +97,19 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
     )
 }
 
-function getDaysSinceQuestionWasCreated(creationDataInEpochSeconds: number): number {
+function getDaysSinceQuestionWasCreatedText(creationDataInEpochSeconds: number): string {
     const millisecondsInASecond = 1000;
     const secondsInADay = 86400;
 
     const currentEpochInSeconds = (Date.now() / millisecondsInASecond);
     const secondsSinceCreation = currentEpochInSeconds - creationDataInEpochSeconds;
     const daysSinceCreation = Math.floor(secondsSinceCreation / secondsInADay);
-    return daysSinceCreation;
+
+    let dayString = "days";
+    if(daysSinceCreation <= 1) {
+        dayString = "day";
+    }
+
+    return `Created ${daysSinceCreation} ${dayString} ago`;
 }
 
