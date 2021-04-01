@@ -14,6 +14,10 @@ import HeroBanner from "../components/heroBanner";
 import { HeroBannerData } from "../interfaces/heroBannerData";
 import { Article } from "../interfaces/articles";
 import { GetLatestArticles } from "../lib/articles";
+import Box from "@material-ui/core/Box";
+import StackOverflow from "../components/stackOverflow";
+import { GetStackOverflowQuestionsByTag } from "../lib/stackOverflow";
+import { StackOverflowQuestion } from "../interfaces/stackOverflowQuestion";
 
 const useStyles = makeStyles((theme) => ({
 	ctaCards: {
@@ -24,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
 	grey: {
 		backgroundColor: theme.palette.grey[100],
 		marginTop: "20px",
+		marginBottom: "20px",
+	},
+	white: {
+		backgroundColor: theme.palette.common.white,
+		paddingTop: "20px",
+		paddingBottom: "20px",
 	},
 }));
 
@@ -31,10 +41,12 @@ export default function Home({
 	announcements,
 	articles,
 	heroBannerData,
+	stackOverflowData,
 }: {
 	announcements: Announcement[];
 	heroBannerData: HeroBannerData;
 	articles: Article[];
+	stackOverflowData: StackOverflowQuestion[];
 }) {
 	const classes = useStyles();
 
@@ -57,6 +69,11 @@ export default function Home({
 				<ThreeVideoGrid />
 			</Container>
 
+			<Box width={1} className={classes.white}>
+				<Container maxWidth="lg" className={classes.white}>
+					<StackOverflow questions={stackOverflowData}/>
+				</Container>
+			</Box>
 			<Footer />
 		</div>
 	);
@@ -65,6 +82,9 @@ export default function Home({
 export const getStaticProps: GetStaticProps = async () => {
 	const announcements = await GetTopAnnouncements(3);
 	const articles = await GetLatestArticles(4);
+	const stackOverflowQuestions: StackOverflowQuestion[] = await GetStackOverflowQuestionsByTag("jss");
+
+	console.log(stackOverflowQuestions);
 
 	const heroBannerData: HeroBannerData = {
 		Title: "Sitecore Community",
@@ -75,6 +95,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			announcements: announcements,
 			heroBannerData: heroBannerData,
 			articles: articles,
+			stackOverflowData: stackOverflowQuestions
 		},
 		revalidate: 1,
 	};

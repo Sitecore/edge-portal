@@ -81,7 +81,7 @@ export default function NavBar() {
             </Typography>
               </a>
             </Link>
-            <Link href="#">
+            <Link href="https://community.sitecore.net/">
               <a className={classes.link}>
                 <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
                   Community
