@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import { StackOverflowQuestion } from '../interfaces/stackOverflowQuestion';
+import Box from '@material-ui/core/Box';
+import Link from 'next/link';
 
 export const useStyles = makeStyles((theme) => ({
     card: {
@@ -23,6 +25,23 @@ export const useStyles = makeStyles((theme) => ({
         // width: 500,
         height: 300,
     },
+    gridTileBox: {
+        border: "1px solid" + theme.palette.grey[300],
+        justifyContent: "space-between",
+        alignItems: "center",
+        height: 50,
+        "&:hover": {
+			backgroundColor: theme.palette.grey[100],
+            cursor: "pointer"
+		},
+    },
+    questionTitle: {
+        paddingLeft: 10,
+        fontWeight: "bold"
+    },
+    link: {
+        textDecoration: "none"
+    }
 }));
 
 
@@ -42,12 +61,17 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
                 className={classes.header}
             />
             <CardContent>
-                <GridList cellHeight={50} className={classes.gridList} cols={1}>
+                <GridList cellHeight={55} className={classes.gridList} cols={1}>
                     {questions.map((question) => (
                         <GridListTile key={question.question_id}>
-                            <p>
-                                {question.title}
-                            </p>
+                            <Link href={question.link}>
+                                <Box display="flex" className={classes.gridTileBox}>
+                                    <div className={classes.questionTitle}>
+                                        {question.title}
+                                    </div>
+                                        Created 3 days ago
+                                    </Box>
+                            </Link>
                         </GridListTile>
                     ))}
                 </GridList>
