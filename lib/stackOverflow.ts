@@ -1,7 +1,21 @@
 import { StackOverflowQuestion } from "../interfaces/stackOverflowQuestion";
 
 export async function GetStackOverflowQuestionsByTag(tag: string): Promise<StackOverflowQuestion[]> {
-    const response = await fetch(`https://api.stackexchange.com/2.2/questions?pagesize=8&order=desc&sort=creation&tagged=${tag}&site=stackoverflow`);
-    const data = await response.json();
-    return data.items as StackOverflowQuestion[];
+
+    const stackOverflowAPIUrl = `https://api.stackexchange.com/2.2/questions?pagesize=8&order=desc&sort=creation&tagged=${tag}&site=stackoverflow`;
+    const response = await fetch(stackOverflowAPIUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .catch(handleError);
+
+        console.log(response.items)
+    return response.items as StackOverflowQuestion[];
 }
+
+var handleError = function (error: Error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+};
