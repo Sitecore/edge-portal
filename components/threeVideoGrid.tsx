@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { SingleVideo } from "./singleVideo";
 import { makeStyles } from "@material-ui/core/styles";
+import { YouTubeVideo } from "../interfaces/youTubeVideo";
 
 export const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -16,7 +17,9 @@ export const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export function ThreeVideoGrid() {
+export function ThreeVideoGrid(videos: any) {
+	const youTubeData: YouTubeVideo[] = videos.videos;
+
 	const classes = useStyles();
 	return (
 		<Card square>
@@ -33,26 +36,13 @@ export function ThreeVideoGrid() {
 			<CardContent>
 				<Grid item xs={12}>
 					<Grid container justify="center" spacing={5}>
-						<Grid item>
-							<Box m={1}>
-								<SingleVideo />
-							</Box>
-						</Grid>
-						<Grid item>
-							<Box m={1}>
-								<SingleVideo />
-							</Box>
-						</Grid>
-						<Grid item>
-							<Box m={1}>
-								<SingleVideo />
-							</Box>
-						</Grid>
-						<Grid item>
-							<Box m={1}>
-								<SingleVideo />
-							</Box>
-						</Grid>
+						{youTubeData?.map(video => (
+							<Grid item key={video.id}>
+								<Box m={1} >
+									<SingleVideo video={video} />
+								</Box>
+							</Grid>
+						))}
 					</Grid>
 				</Grid>
 			</CardContent>

@@ -11,8 +11,7 @@ export async function GetStackOverflowQuestionsByTag(tag: string): Promise<Stack
             return response.json();
         })
         .catch(handleError);
-
-        console.log(response.items)
+        
     return response.items as StackOverflowQuestion[];
 }
 

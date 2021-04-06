@@ -18,6 +18,8 @@ import Box from "@material-ui/core/Box";
 import StackOverflow from "../components/stackOverflow";
 import { GetStackOverflowQuestionsByTag } from "../lib/stackOverflow";
 import { StackOverflowQuestion } from "../interfaces/stackOverflowQuestion";
+import { YouTubeVideo } from "../interfaces/youTubeVideo";
+import { GetYouTubeVideos } from "../lib/youtubeVideos";
 
 const useStyles = makeStyles((theme) => ({
 	ctaCards: {
@@ -42,11 +44,13 @@ export default function Home({
 	articles,
 	heroBannerData,
 	stackOverflowData,
+	youTubeData
 }: {
 	announcements: Announcement[];
 	heroBannerData: HeroBannerData;
 	articles: Article[];
 	stackOverflowData: StackOverflowQuestion[];
+	youTubeData: YouTubeVideo[];
 }) {
 	const classes = useStyles();
 
@@ -66,12 +70,12 @@ export default function Home({
 
 			<Container maxWidth="lg" className={classes.grey}>
 				<LatestNewsAndArticles announcements={announcements} articles={articles} />
-				<ThreeVideoGrid />
+				<ThreeVideoGrid videos={youTubeData} />
 			</Container>
 
 			<Box width={1} className={classes.white}>
 				<Container maxWidth="lg" className={classes.white}>
-					<StackOverflow questions={stackOverflowData}/>
+					<StackOverflow questions={stackOverflowData} />
 				</Container>
 			</Box>
 			<Footer />
@@ -83,7 +87,17 @@ export const getStaticProps: GetStaticProps = async () => {
 	const announcements = await GetTopAnnouncements(3);
 	const articles = await GetLatestArticles(4);
 	const stackOverflowQuestions: StackOverflowQuestion[] = await GetStackOverflowQuestionsByTag("jss");
+	const youTubeVideos: YouTubeVideo[] = await GetYouTubeVideos();
+	
+	// Pushing video onto array 4 times so we have more data. Currently Playlist only has one video
+	if(youTubeVideos.length > 0) {
+		youTubeVideos.push(youTubeVideos[0]);
+		youTubeVideos.push(youTubeVideos[0]);
+		youTubeVideos.push(youTubeVideos[0]);
+	}
 
+
+	console.log(youTubeVideos);
 	const heroBannerData: HeroBannerData = {
 		Title: "Sitecore Community",
 		SubTitle: "Get up and running quickly",
@@ -93,7 +107,8 @@ export const getStaticProps: GetStaticProps = async () => {
 			announcements: announcements,
 			heroBannerData: heroBannerData,
 			articles: articles,
-			stackOverflowData: stackOverflowQuestions
+			stackOverflowData: stackOverflowQuestions,
+			youTubeData: youTubeVideos
 		},
 		revalidate: 1,
 	};

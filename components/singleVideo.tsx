@@ -7,6 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { YouTubeVideo } from "../interfaces/youTubeVideo";
 
 const useStyles = makeStyles(() => ({
 	videoCard: {
@@ -17,19 +18,22 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-export function SingleVideo() {
+export function SingleVideo(video: any) {
 	const classes = useStyles();
+	const youTubeVideo: YouTubeVideo = video.video;
 
 	return (
 		<Card className={classes.videoCard} square variant="outlined">
 			<CardActionArea>
-				<CardMedia className={classes.media} image="/images/play.png" title="No Video Here" />
+				<CardMedia className={classes.media}
+					image={youTubeVideo.snippet?.thumbnails.medium.url}
+					title={youTubeVideo.snippet?.title} />
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="h2">
-						Video
+						{youTubeVideo.snippet.title}
 					</Typography>
 					<Typography variant="body2" color="textSecondary" component="p">
-						Video with video content in it with things people watch in videos.
+						{youTubeVideo.snippet.description}
 					</Typography>
 				</CardContent>
 			</CardActionArea>
