@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SideNavigation({ categories, sectionName }: { sectionName: string; categories: Category[] }) {
+export default function SideNavigation({ categories, sectionName, sectionSlug }: { sectionName: string; categories: Category[]; sectionSlug: string }) {
 	const classes = useStyles();
 
 	return (
@@ -33,21 +33,21 @@ export default function SideNavigation({ categories, sectionName }: { sectionNam
 			className={classes.root}>
 			{categories.map((category) => (
 				<React.Fragment>
-					<ListItem button component="a" href={`/getting-started/${encodeURIComponent(category.Name)}`}>
-						<Link href={`/getting-started/${encodeURIComponent(category.Name)}`}>
+					<ListItem button component="a" href={`/${sectionSlug}/${encodeURIComponent(category.Name)}`}>
+						<Link href={`/${sectionSlug}/${encodeURIComponent(category.Name)}`}>
 							<ListItemText primary={category.Name} />
 						</Link>
 					</ListItem>
 					<List component="div" disablePadding>
 						{category.Articles.results
-							? category.Articles.results.map((article) => (
+							? category.Articles.results.map((article, index) => (
 									<ListItem
-										key={article.Name}
+										key={`${article.Name}${index}`}
 										button
 										component="a"
 										className={classes.nested}
-										href={`/getting-started/${encodeURIComponent(category.Name)}/${encodeURIComponent(article.Name)}`}>
-										<Link href={`/getting-started/${encodeURIComponent(category.Name)}/${encodeURIComponent(article.Name)}`}>
+										href={`/${sectionSlug}/${encodeURIComponent(category.Name)}/${encodeURIComponent(article.Name)}`}>
+										<Link href={`/${sectionSlug}/${encodeURIComponent(category.Name)}/${encodeURIComponent(article.Name)}`}>
 											<ListItemText primary={article.Name} />
 										</Link>
 									</ListItem>

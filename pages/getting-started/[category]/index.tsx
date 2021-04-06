@@ -76,7 +76,7 @@ export default function GettingStarted({
 								<p>{currentCategory.Abstract}</p>
 							</Typography>
 							<Typography variant="body2" gutterBottom>
-								<p>{currentCategory.Body}</p>
+								<div dangerouslySetInnerHTML={{ __html: currentCategory.Body }} />
 							</Typography>
 						</Grid>
 					</Grid>

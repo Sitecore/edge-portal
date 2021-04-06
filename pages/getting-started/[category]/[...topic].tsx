@@ -76,7 +76,7 @@ export default function Topic({
 								{article.Abstract}
 							</Typography>
 							<Typography variant="body2" gutterBottom>
-								{article.Body}
+								<div dangerouslySetInnerHTML={{ __html: article.Body }} />
 							</Typography>
 						</Grid>
 					</Grid>

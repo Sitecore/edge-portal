@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function GettingStarted({
+export default function Resources({
 	heroBannerData,
 	sectionName,
 	categories,
@@ -59,7 +59,7 @@ export default function GettingStarted({
 				<Container maxWidth="lg">
 					<Grid container>
 						<Grid item xs={12} md={3}>
-							<SideNavigation categories={categories} sectionName={sectionName} sectionSlug="getting-started"></SideNavigation>
+							<SideNavigation categories={categories} sectionName={sectionName} sectionSlug="resources"></SideNavigation>
 						</Grid>
 						<Grid item xs={12} md={9}>
 							<Typography variant="h5" component="h1" gutterBottom>
@@ -81,11 +81,11 @@ export default function GettingStarted({
 
 export const getStaticProps: GetStaticProps = async () => {
 	const heroBannerData: HeroBannerData = {
-		Title: "Getting Started",
-		SubTitle: "Learn everything you need to know!",
+		Title: "Resources",
+		SubTitle: "Find more resources to get you started!",
 	};
 
-	var section: Section = await GetMenuStructureBySection("Getting Started");
+	var section: Section = await GetMenuStructureBySection("Resources");
 
 	console.log(section);
 
