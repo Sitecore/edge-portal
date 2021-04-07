@@ -20,7 +20,6 @@ export const useStyles = makeStyles(() => ({
     },
     footer: {
         backgroundColor: "gray",
-        marginTop: "2rem",
         padding: "2rem",
     },
     footerLinkText: {

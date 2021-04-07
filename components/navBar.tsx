@@ -47,56 +47,56 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar() {
 	const classes = useStyles();
 
-	return (
-		<div className={classes.navBar}>
-			<Container maxWidth="lg">
-				<Grid container justify="center" spacing={1} className={classes.appBar}>
-					<Grid item md={2} xs={12} className={classes.navLogo}>
-						<Link href="/">
-							<a>
-								<Image src="/images/sitecore_logo.svg" width={200} height={100} />
-							</a>
-						</Link>
-					</Grid>
-					<Grid item sm={10} xs={12} className={classes.gridItem}>
-						<Link href="/getting-started">
-							<a className={classes.link}>
-								<Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
-									Getting Started
-								</Typography>
-							</a>
-						</Link>
-						<Link href="/resources">
-							<a className={classes.link}>
-								<Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
-									Resources
-								</Typography>
-							</a>
-						</Link>
-						<Link href="/docs">
-							<a className={classes.link}>
-								<Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
-									Docs
-								</Typography>
-							</a>
-						</Link>
-						<Link href="#">
-							<a className={classes.link}>
-								<Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
-									Community
-								</Typography>
-							</a>
-						</Link>
-						<Link href="#">
-							<a className={classes.link}>
-								<Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
-									Blog
-								</Typography>
-							</a>
-						</Link>
-					</Grid>
-				</Grid>
-			</Container>
-		</div>
-	);
+  return (
+    <div className={classes.navBar}>
+      <Container maxWidth="lg">
+        <Grid container justify="center" spacing={1} className={classes.appBar}>
+          <Grid item md={2} xs={12} className={classes.navLogo}>
+            <Link href="/">
+              <a>
+                <Image src="/images/sitecore_logo.svg" width={200} height={100} />
+              </a>
+            </Link>
+          </Grid>
+          <Grid item sm={10} xs={12} className={classes.gridItem}>
+            <Link href="/getting-started">
+              <a className={classes.link}>
+                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                  Getting Started
+            </Typography>
+              </a>
+            </Link>
+            <Link href="/resources">
+              <a className={classes.link}>
+                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                  Resources
+            </Typography>
+              </a>
+            </Link>
+            <Link href="/docs">
+              <a className={classes.link}>
+                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                  Docs
+            </Typography>
+              </a>
+            </Link>
+            <Link href="https://community.sitecore.net/">
+              <a className={classes.link}>
+                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                  Community
+            </Typography>
+              </a>
+            </Link>
+            <Link href="#">
+              <a className={classes.link}>
+                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                  Blog
+            </Typography>
+              </a>
+            </Link>
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
+  )
 }
