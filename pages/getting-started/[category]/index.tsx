@@ -1,19 +1,19 @@
-import Head from "next/head";
-import { GetStaticProps } from "next";
-import React from "react";
-import NavBar from "components/navBar";
-import Footer from "components/footer";
-import SideNavigation from "components/sideNavigation";
-import HeroBanner from "components/heroBanner";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import { HeroBannerData } from "interfaces/heroBannerData";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { ThreeVideoGrid } from "components/threeVideoGrid";
-import { Section, Categories, Category } from "interfaces/articles";
-import { GetMenuStructureBySection, GetCategory, GetCategoriesBySection } from "lib/articles";
-import { ParsedUrlQuery } from "querystring";
+import Head from 'next/head';
+import { GetStaticProps } from 'next';
+import React from 'react';
+import NavBar from 'components/navBar';
+import Footer from 'components/footer';
+import SideNavigation from 'components/sideNavigation';
+import HeroBanner from 'components/heroBanner';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import { HeroBannerData } from 'interfaces/heroBannerData';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { ThreeVideoGrid } from 'components/threeVideoGrid';
+import { Section, Categories, Category } from 'interfaces/articles';
+import { GetMenuStructureBySection, GetCategory, GetCategoriesBySection } from 'lib/articles';
+import { ParsedUrlQuery } from 'querystring';
 
 const useStyles = makeStyles((theme) => ({
 	docsList: {
@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	grey: {
 		backgroundColor: theme.palette.grey[100],
-		marginTop: "20px",
+		marginTop: '20px',
 	},
 	root: {
-		width: "100%",
+		width: '100%',
 		maxWidth: 360,
 		backgroundColor: theme.palette.background.paper,
 	},
@@ -66,7 +66,7 @@ export default function GettingStarted({
 				<Container maxWidth="lg">
 					<Grid container>
 						<Grid item xs={12} md={3}>
-							<SideNavigation categories={categories} sectionName={sectionName}></SideNavigation>
+							<SideNavigation categories={categories} sectionName={sectionName} sectionSlug="getting-started"></SideNavigation>
 						</Grid>
 						<Grid item xs={12} md={9}>
 							<Typography variant="h5" component="h1" gutterBottom>
@@ -95,12 +95,12 @@ export default function GettingStarted({
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { category } = context.params as IParams;
 
-	var section: Section = await GetMenuStructureBySection("Getting Started");
-	var currentCategory: Category = await GetCategory("Getting Started", category);
+	var section: Section = await GetMenuStructureBySection('Getting Started');
+	var currentCategory: Category = await GetCategory('Getting Started', category);
 
 	const heroBannerData: HeroBannerData = {
 		Title: currentCategory.Name,
-		SubTitle: "Learn eveything you need to know!",
+		SubTitle: 'Learn eveything you need to know!',
 	};
 
 	return {
@@ -115,7 +115,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export async function getStaticPaths(categories: Categories) {
-	categories = await GetCategoriesBySection("Getting Started");
+	categories = await GetCategoriesBySection('Getting Started');
 
 	return {
 		paths: categories.results?.map(({ Name }) => `/getting-started/${Name}`) ?? [],
