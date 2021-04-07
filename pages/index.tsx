@@ -12,8 +12,8 @@ import NavBar from "../components/navBar";
 import Footer from "../components/footer";
 import HeroBanner from "../components/heroBanner";
 import { HeroBannerData } from "../interfaces/heroBannerData";
-import { Article } from "../interfaces/articles";
-import { GetLatestArticles } from "../lib/articles";
+import { Blogpost } from "../interfaces/blogposts";
+import { GetLatestBlogposts } from "../lib/blogposts";
 import Box from "@material-ui/core/Box";
 import StackOverflow from "../components/stackOverflow";
 import { GetStackOverflowQuestionsByTag } from "../lib/stackOverflow";
@@ -39,13 +39,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home({
 	announcements,
-	articles,
+	blogposts,
 	heroBannerData,
 	stackOverflowData,
 }: {
 	announcements: Announcement[];
 	heroBannerData: HeroBannerData;
-	articles: Article[];
+	blogposts: Blogpost[];
 	stackOverflowData: StackOverflowQuestion[];
 }) {
 	const classes = useStyles();
@@ -65,7 +65,7 @@ export default function Home({
 			</div>
 
 			<Container maxWidth="lg" className={classes.grey}>
-				<LatestNewsAndArticles announcements={announcements} articles={articles} />
+				<LatestNewsAndArticles announcements={announcements} blogposts={blogposts} />
 				<ThreeVideoGrid />
 			</Container>
 
@@ -81,7 +81,7 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps = async () => {
 	const announcements = await GetTopAnnouncements(3);
-	const articles = await GetLatestArticles(4);
+	const blogposts = await GetLatestBlogposts(4);
 	const stackOverflowQuestions: StackOverflowQuestion[] = await GetStackOverflowQuestionsByTag("jss");
 
 	const heroBannerData: HeroBannerData = {
@@ -92,7 +92,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		props: {
 			announcements: announcements,
 			heroBannerData: heroBannerData,
-			articles: articles,
+			blogposts: blogposts,
 			stackOverflowData: stackOverflowQuestions
 		},
 		revalidate: 1,

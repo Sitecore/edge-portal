@@ -1,17 +1,35 @@
-export type Article = {
-	id: string;
+export interface Article {
+	Name: string;
 	Title: string;
-	Abstract?: string;
-	Body?: string;
-	PublishDate?: string;
-};
+	Abstract: string;
+	Body: string;
+	Id: string;
+}
 
-export type ArticleList = {
-	__typename: string;
-	total: string;
+export interface Articles {
 	results: Article[];
-};
+}
 
-export type ArticlesResult = {
-	ArticleList: ArticleList;
-};
+export interface Category {
+	Name: string;
+	Title: string;
+	Body?: any;
+	Abstract: string;
+	Articles: Articles;
+}
+
+export interface Categories {
+	results: Category[];
+}
+
+export interface Section {
+	Name: string;
+	Categories: Categories;
+}
+
+export interface Sections {
+	results: Section[];
+}
+export interface SectionResult {
+	Sections: Sections;
+}
