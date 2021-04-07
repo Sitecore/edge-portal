@@ -97,7 +97,6 @@ export const getStaticProps: GetStaticProps = async () => {
 	}
 
 
-	console.log(youTubeVideos);
 	const heroBannerData: HeroBannerData = {
 		Title: "Sitecore Community",
 		SubTitle: "Get up and running quickly",
