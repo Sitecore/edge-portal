@@ -1,6 +1,6 @@
 import { YouTubeVideo } from "../interfaces/youTubeVideo";
 
-const YOUTUBE_API_KEY = process.env.THOMAS_YOUTUBE_API_KEY;
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
 
 export async function GetYouTubeVideos(): Promise<YouTubeVideo[]> {
