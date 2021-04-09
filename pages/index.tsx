@@ -75,7 +75,7 @@ export default function Home({
 
 			<Box width={1} className={classes.white}>
 				<Container maxWidth="lg" className={classes.white}>
-					<StackOverflow questions={stackOverflowData} />
+					<StackOverflow />
 				</Container>
 			</Box>
 			<Footer />
@@ -86,7 +86,6 @@ export default function Home({
 export const getStaticProps: GetStaticProps = async () => {
 	const announcements = await GetTopAnnouncements(3);
 	const blogposts = await GetLatestBlogposts(4);
-	const stackOverflowQuestions: StackOverflowQuestion[] = await GetStackOverflowQuestionsByTag("jss");
 	const youTubeVideos: YouTubeVideo[] = await GetYouTubeVideos();
 
 
@@ -98,7 +97,6 @@ export const getStaticProps: GetStaticProps = async () => {
 		props: {
 			announcements: announcements,
 			heroBannerData: heroBannerData,
-			stackOverflowData: stackOverflowQuestions,
 			youTubeData: youTubeVideos,
 			blogposts: blogposts,
 		},

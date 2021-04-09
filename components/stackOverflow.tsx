@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import CardHeader from '@material-ui/core/CardHeader';
 import Card from '@material-ui/core/Card';
@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 import Link from 'next/link';
 import { Typography } from '@material-ui/core';
 import Image from 'next/image'
+import { GetStackOverflowQuestionsByTag } from 'lib/stackOverflow';
 
 export const useStyles = makeStyles((theme) => ({
     card: {
@@ -54,7 +55,18 @@ export const useStyles = makeStyles((theme) => ({
 
 
 
-export default function StackOverflow({ questions }: { questions: StackOverflowQuestion[] }) {
+export default function StackOverflow() {
+    const [questions, questionsSet] = useState<StackOverflowQuestion[]>([])
+
+    useEffect(() => {
+        async function getStackOverflowQuestions() {
+            let response = await GetStackOverflowQuestionsByTag("jss");
+            questionsSet(response)
+        }
+        getStackOverflowQuestions();
+    },
+        []);
+
     const classes = useStyles();
 
     return (
@@ -70,7 +82,7 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
 
             <CardContent>
                 <GridList cellHeight="auto" className={classes.gridList} cols={1}>
-                    {questions.map((question) => (
+                    {questions?.map((question) => (
                         <GridListTile key={question.question_id}>
                             <Link href={question.link}>
                                 <Box className={classes.gridTile}>
@@ -80,7 +92,7 @@ export default function StackOverflow({ questions }: { questions: StackOverflowQ
                                         </Typography>
                                         <Typography>
                                             {getDaysSinceQuestionWasCreatedText(question.creation_date)}
-                                    </Typography>
+                                        </Typography>
                                     </Box>
                                     <Box display="flex">
                                         <Typography className={classes.secondaryText}>
@@ -106,7 +118,7 @@ function getDaysSinceQuestionWasCreatedText(creationDataInEpochSeconds: number):
     const daysSinceCreation = Math.floor(secondsSinceCreation / secondsInADay);
 
     let dayString = "days";
-    if(daysSinceCreation <= 1) {
+    if (daysSinceCreation <= 1) {
         dayString = "day";
     }
 
