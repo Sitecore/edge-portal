@@ -16,7 +16,6 @@ import { Blogpost } from '../interfaces/blogposts';
 import { GetLatestBlogposts } from '../lib/blogposts';
 import Box from '@material-ui/core/Box';
 import StackOverflow from '../components/stackOverflow';
-import { StackOverflowQuestion } from '../interfaces/stackOverflowQuestion';
 import { YouTubeVideo } from '../interfaces/youTubeVideo';
 import { GetYouTubeVideos } from '../lib/youtubeVideos';
 
