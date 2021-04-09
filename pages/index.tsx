@@ -88,13 +88,6 @@ export const getStaticProps: GetStaticProps = async () => {
 	const blogposts = await GetLatestBlogposts(4);
 	const stackOverflowQuestions: StackOverflowQuestion[] = await GetStackOverflowQuestionsByTag("jss");
 	const youTubeVideos: YouTubeVideo[] = await GetYouTubeVideos();
-	
-	// Pushing video onto array 4 times so we have more data. Currently Playlist only has one video
-	if(youTubeVideos.length > 0) {
-		youTubeVideos.push(youTubeVideos[0]);
-		youTubeVideos.push(youTubeVideos[0]);
-		youTubeVideos.push(youTubeVideos[0]);
-	}
 
 
 	const heroBannerData: HeroBannerData = {
