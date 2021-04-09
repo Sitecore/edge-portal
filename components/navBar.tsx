@@ -7,45 +7,45 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
-	appBar: {
-		backgroundColor: "white",
-		margin: "0px",
-	},
-	navBarLink: {
-		color: "#9e9e9e",
-		padding: "10px",
-		"&:hover": {
-			color: "#616161",
-		},
-	},
-	gridItem: {
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		flexDirection: "column",
-		[theme.breakpoints.up("sm")]: {
-			flexDirection: "row",
-		},
-		[theme.breakpoints.up("md")]: {
-			justifyContent: "flex-end",
-		},
-	},
-	navLogo: {
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		[theme.breakpoints.up("sm")]: {},
-	},
-	link: {
-		textDecoration: "none",
-	},
-	navBar: {
-		backgroundColor: "#fff",
-	},
+  appBar: {
+    backgroundColor: "white",
+    margin: "0px",
+  },
+  navBarLink: {
+    color: "#9e9e9e",
+    padding: "10px",
+    "&:hover": {
+      color: "#616161",
+    },
+  },
+  gridItem: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: "row",
+    },
+    [theme.breakpoints.up("md")]: {
+      justifyContent: "flex-end",
+    },
+  },
+  navLogo: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.up("sm")]: {},
+  },
+  link: {
+    textDecoration: "none",
+  },
+  navBar: {
+    backgroundColor: "#fff",
+  },
 }));
 
 export default function NavBar() {
-	const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <div className={classes.navBar}>
@@ -54,49 +54,78 @@ export default function NavBar() {
           <Grid item md={2} xs={12} className={classes.navLogo}>
             <Link href="/">
               <a>
-                <Image src="/images/sitecore_logo.svg" width={200} height={100} />
+                <Image
+                  src="/images/sitecore_logo.svg"
+                  width={200}
+                  height={100}
+                />
               </a>
             </Link>
           </Grid>
           <Grid item sm={10} xs={12} className={classes.gridItem}>
             <Link href="/getting-started">
               <a className={classes.link}>
-                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                <Typography
+                  className={classes.navBarLink}
+                  variant="h6"
+                  component="h1"
+                  gutterBottom
+                >
                   Getting Started
-            </Typography>
+                </Typography>
               </a>
             </Link>
             <Link href="/resources">
               <a className={classes.link}>
-                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                <Typography
+                  className={classes.navBarLink}
+                  variant="h6"
+                  component="h1"
+                  gutterBottom
+                >
                   Resources
-            </Typography>
+                </Typography>
               </a>
             </Link>
             <Link href="/docs">
               <a className={classes.link}>
-                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                <Typography
+                  className={classes.navBarLink}
+                  variant="h6"
+                  component="h1"
+                  gutterBottom
+                >
                   Docs
-            </Typography>
+                </Typography>
               </a>
             </Link>
             <Link href="https://community.sitecore.net/">
               <a className={classes.link}>
-                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                <Typography
+                  className={classes.navBarLink}
+                  variant="h6"
+                  component="h1"
+                  gutterBottom
+                >
                   Community
-            </Typography>
+                </Typography>
               </a>
             </Link>
             <Link href="#">
               <a className={classes.link}>
-                <Typography className={classes.navBarLink} variant="h6" component="h1" gutterBottom>
+                <Typography
+                  className={classes.navBarLink}
+                  variant="h6"
+                  component="h1"
+                  gutterBottom
+                >
                   Blog
-            </Typography>
+                </Typography>
               </a>
             </Link>
           </Grid>
         </Grid>
       </Container>
     </div>
-  )
+  );
 }

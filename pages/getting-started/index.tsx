@@ -1,18 +1,18 @@
-import Head from "next/head";
-import React from "react";
-import NavBar from "components/navBar";
-import Footer from "components/footer";
-import HeroBanner from "components/heroBanner";
-import SideNavigation from "components/sideNavigation";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import { HeroBannerData } from "interfaces/heroBannerData";
-import { GetStaticProps } from "next";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { ThreeVideoGrid } from "components/threeVideoGrid";
-import { GetMenuStructureBySection } from "lib/articles";
-import { Category, Section } from "interfaces/articles";
+import Head from 'next/head';
+import React from 'react';
+import NavBar from 'components/navBar';
+import Footer from 'components/footer';
+import HeroBanner from 'components/heroBanner';
+import SideNavigation from 'components/sideNavigation';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import { HeroBannerData } from 'interfaces/heroBannerData';
+import { GetStaticProps } from 'next';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { ThreeVideoGrid } from 'components/threeVideoGrid';
+import { GetMenuStructureBySection } from 'lib/articles';
+import { Category, Section } from 'interfaces/articles';
 
 const useStyles = makeStyles((theme) => ({
 	docsList: {
@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	grey: {
 		backgroundColor: theme.palette.grey[100],
-		marginTop: "20px",
+		marginTop: '20px',
 	},
 	root: {
-		width: "100%",
+		width: '100%',
 		maxWidth: 360,
 		backgroundColor: theme.palette.background.paper,
 	},
@@ -81,13 +81,11 @@ export default function GettingStarted({
 
 export const getStaticProps: GetStaticProps = async () => {
 	const heroBannerData: HeroBannerData = {
-		Title: "Getting Started",
-		SubTitle: "Learn everything you need to know!",
+		Title: 'Getting Started',
+		SubTitle: 'Learn everything you need to know!',
 	};
 
-	var section: Section = await GetMenuStructureBySection("Getting Started");
-
-	console.log(section);
+	var section: Section = await GetMenuStructureBySection('Getting Started');
 
 	return {
 		props: {

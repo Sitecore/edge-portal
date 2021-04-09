@@ -1,35 +1,35 @@
 export interface Article {
-	Name: string;
-	Title: string;
-	Abstract: string;
-	Body: string;
-	Id: string;
+  Name: string;
+  Title: string;
+  Abstract: string;
+  Body: string;
+  Id: string;
 }
 
 export interface Articles {
-	results: Article[];
+  results: Article[];
 }
 
 export interface Category {
-	Name: string;
-	Title: string;
-	Body?: any;
-	Abstract: string;
-	Articles: Articles;
+  Name: string;
+  Title: string;
+  Body?: any;
+  Abstract: string;
+  Articles: Articles;
 }
 
 export interface Categories {
-	results: Category[];
+  results: Category[];
 }
 
 export interface Section {
-	Name: string;
-	Categories: Categories;
+  Name: string;
+  Categories: Categories;
 }
 
 export interface Sections {
-	results: Section[];
+  results: Section[];
 }
 export interface SectionResult {
-	Sections: Sections;
+  Sections: Sections;
 }

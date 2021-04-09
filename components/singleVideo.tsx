@@ -10,41 +10,43 @@ import { makeStyles } from "@material-ui/core/styles";
 import { YouTubeVideo } from "../interfaces/youTubeVideo";
 
 const useStyles = makeStyles(() => ({
-	videoCard: {
-		maxWidth: 250,
-	},
-	media: {
-		height: 140,
-	},
+  videoCard: {
+    maxWidth: 250,
+  },
+  media: {
+    height: 140,
+  },
 }));
 
 export function SingleVideo(video: any) {
-	const classes = useStyles();
-	const youTubeVideo: YouTubeVideo = video.video;
+  const classes = useStyles();
+  const youTubeVideo: YouTubeVideo = video.video;
 
-	return (
-		<Card className={classes.videoCard} square variant="outlined">
-			<CardActionArea>
-				<CardMedia className={classes.media}
-					image={youTubeVideo.snippet?.thumbnails.medium.url}
-					title={youTubeVideo.snippet?.title} />
-				<CardContent>
-					<Typography gutterBottom variant="h5" component="h2">
-						{youTubeVideo.snippet.title}
-					</Typography>
-					<Typography variant="body2" color="textSecondary" component="p">
-						{youTubeVideo.snippet.description}
-					</Typography>
-				</CardContent>
-			</CardActionArea>
-			<CardActions>
-				<Button size="small" color="primary">
-					Share
-				</Button>
-				<Button size="small" color="primary">
-					Learn More
-				</Button>
-			</CardActions>
-		</Card>
-	);
+  return (
+    <Card className={classes.videoCard} square variant="outlined">
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={youTubeVideo.snippet?.thumbnails.medium.url}
+          title={youTubeVideo.snippet?.title}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {youTubeVideo.snippet.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {youTubeVideo.snippet.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button>
+      </CardActions>
+    </Card>
+  );
 }

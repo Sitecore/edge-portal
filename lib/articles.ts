@@ -3,8 +3,8 @@ import { gql } from "@apollo/client";
 import { SectionResult } from "interfaces/articles";
 
 export async function GetCategoriesBySection(sectionName: string) {
-	var { data } = await client.query<SectionResult>({
-		query: gql`
+  var { data } = await client.query<SectionResult>({
+    query: gql`
 			{
 				Sections: allDEMO_ContentTopic(where: { taxonomyName_eq: "${sectionName}" }) {
 					results {
@@ -19,14 +19,14 @@ export async function GetCategoriesBySection(sectionName: string) {
 				}
 			}
 		`,
-	});
+  });
 
-	return data.Sections.results[0].Categories;
+  return data.Sections.results[0].Categories;
 }
 
 export async function GetMenuStructureBySection(sectionName: string) {
-	var { data } = await client.query<SectionResult>({
-		query: gql`
+  var { data } = await client.query<SectionResult>({
+    query: gql`
 			{
 				Sections: allDEMO_ContentTopic(where: { taxonomyName_eq: "${sectionName}" }) {
 					results {
@@ -48,14 +48,14 @@ export async function GetMenuStructureBySection(sectionName: string) {
 				}
 			}
 		`,
-	});
+  });
 
-	return data.Sections.results[0];
+  return data.Sections.results[0];
 }
 
 export async function GetCategory(sectionName: string, categoryName: string) {
-	var { data } = await client.query<SectionResult>({
-		query: gql`
+  var { data } = await client.query<SectionResult>({
+    query: gql`
         { 
 			Sections: allDEMO_ContentTopic(where: { taxonomyName_eq: "${sectionName}" }) {
 				results {
@@ -80,14 +80,18 @@ export async function GetCategory(sectionName: string, categoryName: string) {
 			}
 		}
 		`,
-	});
+  });
 
-	return data.Sections.results[0].Categories.results[0];
+  return data.Sections.results[0].Categories.results[0];
 }
 
-export async function GetArticleByName(sectionName: string, categoryName: string, topicName: string) {
-	var { data } = await client.query<SectionResult>({
-		query: gql`
+export async function GetArticleByName(
+  sectionName: string,
+  categoryName: string,
+  topicName: string
+) {
+  var { data } = await client.query<SectionResult>({
+    query: gql`
         { 
 			Sections: allDEMO_ContentTopic(where: { taxonomyName_eq: "${sectionName}" }) {
 				results {
@@ -112,14 +116,17 @@ export async function GetArticleByName(sectionName: string, categoryName: string
 			}
 		}
 		`,
-	});
+  });
 
-	return data.Sections.results[0].Categories.results[0].Articles.results[0];
+  return data.Sections.results[0].Categories.results[0].Articles.results[0];
 }
 
-export async function GetArticlesByCategory(sectionName: string, categoryName: string) {
-	var { data } = await client.query<SectionResult>({
-		query: gql`
+export async function GetArticlesByCategory(
+  sectionName: string,
+  categoryName: string
+) {
+  var { data } = await client.query<SectionResult>({
+    query: gql`
         { 
 			Sections: allDEMO_ContentTopic(where: { taxonomyName_eq: "${sectionName}" }) {
 				results {
@@ -139,7 +146,7 @@ export async function GetArticlesByCategory(sectionName: string, categoryName: s
 			}
 		}
 		`,
-	});
+  });
 
-	return data.Sections.results[0].Categories.results[0].Articles.results;
+  return data.Sections.results[0].Categories.results[0].Articles.results;
 }

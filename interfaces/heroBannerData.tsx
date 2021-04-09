@@ -1,4 +1,4 @@
 export type HeroBannerData = {
-    Title: string,
-    SubTitle: string
-}
+  Title: string;
+  SubTitle: string;
+};

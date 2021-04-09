@@ -1,55 +1,55 @@
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { SingleAnnoucement } from "./singleAnnoucement";
-import { Announcement } from "../interfaces/announcements";
-import { Blogpost } from "../interfaces/blogposts";
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { SingleAnnoucement } from './singleAnnoucement';
+import { Announcement } from '../interfaces/announcements';
+import { Blogpost } from '../interfaces/blogposts';
 
 export const useStyles = makeStyles((theme) => ({
 	gridPadding: {
 		padding: 15,
 	},
 	announcements: {
-		marginBottom: "25px",
+		marginBottom: '25px',
 	},
 	date: {
-		float: "right",
-		fontWeight: "bold",
+		float: 'right',
+		fontWeight: 'bold',
 	},
 	articleList: {
-		"&:before": {
+		'&:before': {
 			content: "''",
 			backgroundColor: theme.palette.grey[300],
-			display: "inline-block",
-			position: "absolute",
-			left: "12px",
-			width: "2px",
-			height: "100%",
+			display: 'inline-block',
+			position: 'absolute',
+			left: '12px',
+			width: '2px',
+			height: '100%',
 			zIndex: 400,
 		},
 	},
 	listItem: {
-		"&:before": {
+		'&:before': {
 			content: "''",
-			display: "inline-block",
-			position: "absolute",
-			borderRadius: "50%",
-			border: "3px solid",
+			display: 'inline-block',
+			position: 'absolute',
+			borderRadius: '50%',
+			border: '3px solid',
 			borderColor: theme.palette.primary.main,
-			left: "0px",
-			width: "20px",
-			height: "20px",
+			left: '0px',
+			width: '20px',
+			height: '20px',
 			zIndex: 400,
 		},
 	},
 	listItemText: {
-		margin: "10px 0px",
-		paddingLeft: "20px",
+		margin: '10px 0px',
+		paddingLeft: '20px',
 	},
 }));
 
@@ -65,7 +65,7 @@ export function LatestNewsAndArticles({ announcements, blogposts }: { announceme
 					</Typography>
 					<List className={classes.articleList}>
 						{blogposts.map(({ Title, Abstract, PublishDate }) => (
-							<ListItem className={classes.listItem}>
+							<ListItem className={classes.listItem} key="{PublishDate}">
 								<ListItemText
 									className={classes.listItemText}
 									primary={
