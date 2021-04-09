@@ -1,4 +1,4 @@
 export interface FooterLinkData {
-    LinkUrl: string;
-    LinkText: string;
+  LinkUrl: string;
+  LinkText: string;
 }

@@ -15,86 +15,90 @@ import { GetMenuStructureBySection } from "lib/articles";
 import { Category, Section } from "interfaces/articles";
 
 const useStyles = makeStyles((theme) => ({
-	docsList: {
-		backgroundColor: theme.palette.common.white,
-		paddingTop: 64,
-		paddingBottom: 64,
-	},
-	grey: {
-		backgroundColor: theme.palette.grey[100],
-		marginTop: "20px",
-	},
-	root: {
-		width: "100%",
-		maxWidth: 360,
-		backgroundColor: theme.palette.background.paper,
-	},
-	nested: {
-		paddingLeft: theme.spacing(4),
-	},
+  docsList: {
+    backgroundColor: theme.palette.common.white,
+    paddingTop: 64,
+    paddingBottom: 64,
+  },
+  grey: {
+    backgroundColor: theme.palette.grey[100],
+    marginTop: "20px",
+  },
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
 }));
 
 export default function GettingStarted({
-	heroBannerData,
-	sectionName,
-	categories,
+  heroBannerData,
+  sectionName,
+  categories,
 }: {
-	heroBannerData: HeroBannerData;
-	sectionName: string;
-	categories: Category[];
+  heroBannerData: HeroBannerData;
+  sectionName: string;
+  categories: Category[];
 }) {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	return (
-		<div>
-			<Head>
-				<title>Getting Started</title>
-			</Head>
+  return (
+    <div>
+      <Head>
+        <title>Getting Started</title>
+      </Head>
 
-			<NavBar />
+      <NavBar />
 
-			<HeroBanner data={heroBannerData} />
+      <HeroBanner data={heroBannerData} />
 
-			<div className={classes.docsList}>
-				<Container maxWidth="lg">
-					<Grid container>
-						<Grid item xs={12} md={3}>
-							<SideNavigation categories={categories} sectionName={sectionName} sectionSlug="getting-started"></SideNavigation>
-						</Grid>
-						<Grid item xs={12} md={9}>
-							<Typography variant="h5" component="h1" gutterBottom>
-								{sectionName}
-							</Typography>
-						</Grid>
-					</Grid>
-				</Container>
-			</div>
+      <div className={classes.docsList}>
+        <Container maxWidth="lg">
+          <Grid container>
+            <Grid item xs={12} md={3}>
+              <SideNavigation
+                categories={categories}
+                sectionName={sectionName}
+                sectionSlug="getting-started"
+              ></SideNavigation>
+            </Grid>
+            <Grid item xs={12} md={9}>
+              <Typography variant="h5" component="h1" gutterBottom>
+                {sectionName}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </div>
 
-			<Container maxWidth="lg" className={classes.grey}>
-				<ThreeVideoGrid />
-			</Container>
+      <Container maxWidth="lg" className={classes.grey}>
+        <ThreeVideoGrid />
+      </Container>
 
-			<Footer />
-		</div>
-	);
+      <Footer />
+    </div>
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const heroBannerData: HeroBannerData = {
-		Title: "Getting Started",
-		SubTitle: "Learn everything you need to know!",
-	};
+  const heroBannerData: HeroBannerData = {
+    Title: "Getting Started",
+    SubTitle: "Learn everything you need to know!",
+  };
 
-	var section: Section = await GetMenuStructureBySection("Getting Started");
+  var section: Section = await GetMenuStructureBySection("Getting Started");
 
-	console.log(section);
+  console.log(section);
 
-	return {
-		props: {
-			heroBannerData: heroBannerData,
-			sectionName: section.Name,
-			categories: section.Categories.results,
-		},
-		revalidate: 1,
-	};
+  return {
+    props: {
+      heroBannerData: heroBannerData,
+      sectionName: section.Name,
+      categories: section.Categories.results,
+    },
+    revalidate: 1,
+  };
 };
