@@ -111,7 +111,7 @@ export default function NavBar() {
                 </Typography>
               </a>
             </Link>
-            <Link href="#">
+            <Link href="/blogs">
               <a className={classes.link}>
                 <Typography
                   className={classes.navBarLink}
