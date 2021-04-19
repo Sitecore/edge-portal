@@ -14,6 +14,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { GetLatestBlogposts } from "lib/blogposts";
 import { GetStaticProps } from "next";
 import { Blogpost } from "interfaces/blogposts";
+import Footer from "components/footer";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        marginBottom: "3rem"
     },
     avatar: {
         backgroundColor: theme.palette.primary.main,
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     card: {
         minWidth: "75%",
         maxWidth: "75%",
-        marginTop: "2rem"
+        marginTop: "2rem",
     },
     title: {
         fontSize: 14,
@@ -45,7 +47,7 @@ export default function Blogs({ blogposts }: { blogposts: Blogpost[]; }) {
     const classes = useStyles();
 
     const heroBannerData: HeroBannerData = {
-        Title: "Blog",
+        Title: "Blogs",
         SubTitle: "Find the latest blogs here!",
     };
 
@@ -54,7 +56,7 @@ export default function Blogs({ blogposts }: { blogposts: Blogpost[]; }) {
     return (
         <div>
             <Head>
-                <title>Blog</title>
+                <title>Blogs</title>
             </Head>
 
             <NavBar />
@@ -82,10 +84,8 @@ export default function Blogs({ blogposts }: { blogposts: Blogpost[]; }) {
                     </Card>
                 ))}
             </div>
-
+			<Footer />
         </div>
-
-
     )
 }
 
