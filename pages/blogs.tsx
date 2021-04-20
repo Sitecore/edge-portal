@@ -10,11 +10,11 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
-import Avatar from "@material-ui/core/Avatar";
 import { GetLatestBlogposts } from "lib/blogposts";
 import { GetStaticProps } from "next";
 import { Blogpost } from "interfaces/blogposts";
 import Footer from "components/footer";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,8 +51,6 @@ export default function Blogs({ blogposts }: { blogposts: Blogpost[]; }) {
         SubTitle: "Find the latest blogs here!",
     };
 
-    console.log(blogposts);
-
     return (
         <div>
             <Head>
@@ -64,27 +62,26 @@ export default function Blogs({ blogposts }: { blogposts: Blogpost[]; }) {
             <HeroBanner data={heroBannerData} />
 
             <div className={classes.root}>
-                {blogposts.map(({ Title, Abstract, PublishDate }) => (
+                {blogposts.map(({ Title, Abstract, PublishDate, Id }) => (
                     <Card className={classes.card} variant="outlined">
                         <CardHeader
                             title={Title}
                             className={classes.header}
                         />
                         <CardContent>
-                            <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            {PublishDate}
-                        </Typography>
                             <Typography variant="body2" component="h2">
-                            {Abstract}
+                                {Abstract}
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small">Read full post</Button>
+                            <Link href={`/blogs/${Id}`}>
+                                <Button size="small">Read full post</Button>
+                            </Link>
                         </CardActions>
                     </Card>
                 ))}
             </div>
-			<Footer />
+            <Footer />
         </div>
     )
 }
