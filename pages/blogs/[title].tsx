@@ -3,7 +3,6 @@ import { GetBlogpostByTitle, GetLatestBlogpostTitles } from "lib/blogposts";
 
 
 export default function Blogs({ blogpost }: { blogpost: Blogpost; }) {
-    console.log("BLOGGGGGGGGGGG", blogpost);
     return (
         <div>
             {blogpost.Body}
@@ -14,7 +13,6 @@ export default function Blogs({ blogpost }: { blogpost: Blogpost; }) {
 
 export async function getStaticPaths() {
     const paths = await GetLatestBlogpostTitles();
-    console.log("NO titles?", paths);
 
     return {
         paths,
