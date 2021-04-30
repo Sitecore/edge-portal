@@ -1,3 +1,10 @@
+export interface Articles {
+	results: Article[];
+}
+export interface ArticleResult {
+	Articles: Articles;
+}
+
 export interface Article {
 	Name: string;
 	Title: string;

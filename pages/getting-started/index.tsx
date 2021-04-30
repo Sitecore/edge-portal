@@ -8,9 +8,10 @@ import { Box, makeStyles, Container, Grid, Typography } from '@material-ui/core'
 import { HeroBannerData } from 'interfaces/heroBannerData';
 import { GetStaticProps } from 'next';
 import { ThreeVideoGrid } from 'components/threeVideoGrid';
-import { GetMenuStructureBySection } from 'lib/articles';
-import { Category } from 'interfaces/articles';
+import { GetArticleByName, GetMenuStructureBySection } from 'lib/articles';
+import { Article, Category } from 'interfaces/articles';
 import { Section } from 'interfaces/section';
+import { DisplayArticle } from 'components/displayArticle';
 
 const useStyles = makeStyles((theme) => ({
 	docsList: {
@@ -36,10 +37,12 @@ export default function GettingStarted({
 	heroBannerData,
 	sectionName,
 	categories,
+	content,
 }: {
 	heroBannerData: HeroBannerData;
 	sectionName: string;
 	categories: Category[];
+	content: Article;
 }) {
 	const classes = useStyles();
 
@@ -60,17 +63,11 @@ export default function GettingStarted({
 							<SideNavigation categories={categories} sectionName={sectionName} sectionSlug="getting-started"></SideNavigation>
 						</Grid>
 						<Grid item xs={12} md={9}>
-							<Typography variant="h5" component="h1" gutterBottom>
-								{sectionName}
-							</Typography>
+							<DisplayArticle article={content} />
 						</Grid>
 					</Grid>
 				</Container>
 			</Box>
-
-			<Container maxWidth="lg" className={classes.grey}>
-				<ThreeVideoGrid />
-			</Container>
 
 			<Footer />
 		</>
@@ -84,12 +81,14 @@ export const getStaticProps: GetStaticProps = async () => {
 	};
 
 	var section: Section = await GetMenuStructureBySection('Getting Started');
+	var content: Article = await GetArticleByName('Getting Started with Edge');
 
 	return {
 		props: {
 			heroBannerData: heroBannerData,
 			sectionName: section.Name,
 			categories: section.Categories.results,
+			content: content,
 		},
 		revalidate: 1,
 	};
