@@ -88,8 +88,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	var section: Section = await GetMenuStructureBySection('Resources');
 
-	console.log(section);
-
 	return {
 		props: {
 			heroBannerData: heroBannerData,
