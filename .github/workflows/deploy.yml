@@ -9,13 +9,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js 16.x
+    - name: Checkout and run test build
       uses: actions/setup-node@v1
       with:
         node-version: 16.x
-      env: 
-        CH_TOKEN: ${{ secrets.CH_TOKEN }}
-        CH_URL: ${{ secrets.CH_URL }}
     - run: npm i
     - run: npm run type-check
     - run: npm run build
+      env: 
+        CH_TOKEN: ${{ secrets.CH_TOKEN }}
+        CH_URL: ${{ secrets.CH_URL }}
