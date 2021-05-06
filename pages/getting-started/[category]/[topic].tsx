@@ -11,7 +11,7 @@ import { GetStaticProps } from 'next';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThreeVideoGrid } from 'components/threeVideoGrid';
-import { GetMenuStructureBySection, GetArticleByName, GetArticlesByCategory } from 'lib/articles';
+import { GetMenuStructureBySection, GetArticleByMetaData, GetArticlesByCategory } from 'lib/articles';
 import { Category, Article } from 'interfaces/articles';
 import { Section } from 'interfaces/section';
 import { ParsedUrlQuery } from 'querystring';
@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	const { category, topic } = context.params as IParams;
 
 	var section: Section = await GetMenuStructureBySection('Getting Started');
-	var article: Article = await GetArticleByName('Getting Started', category, topic);
+	var article: Article = await GetArticleByMetaData('Getting Started', category, topic);
 
 	var heroBannerData: HeroBannerData = {
 		Title: 'Getting Started',

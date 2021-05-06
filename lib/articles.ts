@@ -1,6 +1,7 @@
 import { client } from 'lib/gql';
 import { gql } from '@apollo/client';
 import { SectionResult } from 'interfaces/section';
+import { ArticleResult, Article } from 'interfaces/articles';
 
 export async function GetCategoriesBySection(sectionName: string) {
 	var { data } = await client.query<SectionResult>({
@@ -85,7 +86,7 @@ export async function GetCategory(sectionName: string, categoryName: string) {
 	return data.Sections.results[0].Categories.results[0];
 }
 
-export async function GetArticleByName(sectionName: string, categoryName: string, topicName: string) {
+export async function GetArticleByMetaData(sectionName: string, categoryName: string, topicName: string) {
 	var { data } = await client.query<SectionResult>({
 		query: gql`
         { 
@@ -115,6 +116,27 @@ export async function GetArticleByName(sectionName: string, categoryName: string
 	});
 
 	return data.Sections.results[0].Categories.results[0].Articles.results[0];
+}
+
+export async function GetArticleByName(articleName: string) {
+	var { data } = await client.query<ArticleResult>({
+		query: gql`
+        {
+			Articles: allM_Content(where: { content_Name_eq: "${articleName}"}) {
+				results {
+					...on M_Content_f3012 {
+						Name: content_Name
+						Title: f3012_Title
+						Abstract: f3012_Abstract
+						Body: f3012_Body
+					}
+				}
+			}
+		}
+		`,
+	});
+
+	return data.Articles.results[0];
 }
 
 export async function GetArticlesByCategory(sectionName: string, categoryName: string) {
