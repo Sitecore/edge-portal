@@ -111,6 +111,6 @@ export async function getStaticPaths(categories: Categories) {
 
 	return {
 		paths: categories.results?.map(({ Name }) => `/getting-started/${Name}`) ?? [],
-		fallback: true,
+		fallback: false,
 	};
 }
