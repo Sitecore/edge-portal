@@ -126,6 +126,6 @@ export async function getStaticPaths() {
 		paths: staticPaths.map((article) => ({
 			params: { category: article.category, topic: article.topic },
 		})),
-		fallback: true,
+		fallback: false,
 	};
 }
