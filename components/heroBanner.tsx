@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
 	},
 	box: {
 		backgroundColor: '#424242',
-		backgroundImage: 'url(/img/jumbo-bg.png)',
+		backgroundImage: 'url(https://edge-microsite-400.stylelabs.io/api/public/content/7837d76bb0354f05a2fc2c27cc2631a5?v=08ecbd49&t=w2560h280)',
 		padding: '5rem',
 		borderRadius: '0',
 		marginTop: 0,

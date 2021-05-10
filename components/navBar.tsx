@@ -56,7 +56,7 @@ export default function NavBar() {
 					<Grid item md={2} xs={12} className={classes.navLogo}>
 						<Link href="/">
 							<a>
-								<Image src="/images/sitecore_logo.svg" width={200} height={100} />
+								<Image src="https://edge-microsite-400.stylelabs.io/api/public/content/sitecore-logo" width={200} height={100} />
 							</a>
 						</Link>
 					</Grid>
