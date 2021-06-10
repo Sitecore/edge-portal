@@ -1,6 +1,8 @@
 # 🌎 Edge Portal
 This is a NextJS application, showing you can pull data from Sitecore Experience Edge for Content Hub.
 
+[![Edge portal](https://github.com/Sitecore/edge-portal/actions/workflows/deploy.yml/badge.svg)](https://github.com/Sitecore/edge-portal/actions/workflows/deploy.yml)
+
 # 💻 Initial Setup
 ## Create .env file
 - Create a .env file in the root of your repo on disk
